@@ -5,15 +5,15 @@
 #include "battlefield.h"
 
 // Data structure of battleship
-struct Battleship {
-    char type;
-    float x;
-    float y;
-    float maxVelocity;
+    struct Battleship {
+      char type;
+      float x;
+      float y;
+      float maxVelocity;
 };
 
 // Data structure of escort ships
-struct Escortship {
+  struct Escortship{
     int id;
     char type;
     float x;
@@ -27,10 +27,10 @@ struct Escortship {
 };
 
 // Part 1 A simulation function
-void part_1_A() {
-    system("clear");
-    printf("                                         Start\n\n\n");
-    printf("                                 Part-1-A Simulation\n\n");
+    void part_1_A() {
+     system("clear");
+     printf("                                         Start\n\n\n");
+     printf("                                 Part-1-A Simulation\n\n");
 
     struct Battleship b;
 
@@ -60,10 +60,10 @@ void part_1_A() {
     // Battlefield dimensions and Escort ships count inputs
     float D;
     int N;
-    printf("Enter Battlefield dimensions (D): ");
-    scanf("%f", &D);
-    printf("Enter Number of Escort Ships (N): ");
-    scanf("%d", &N);
+    battlefield(&D, &N);
+    getchar();
+    getchar();
+    system("clear");
 
     struct Escortship e[N];
     char types[] = {'A', 'B', 'C', 'D', 'E'};
@@ -135,7 +135,6 @@ void part_1_A() {
 
     } 
 
-    getchar();
     getchar();
     system("clear");
 }
