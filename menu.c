@@ -6,12 +6,13 @@
 void main_menu(){
 	int select;
 	int exitoption;
+	//display the main menu options in a loop
 	do
 	  {
 	   printf("                                                     |Main Menu|\n\n\n\n\n\n");
 	   printf("                                                1. Start Simulation\n\n");
 	   printf("                                                2. Instructions\n\n");
-	   printf("                                                3. Options\n\n");
+	   printf("                                                3. Simulator Statistics\n\n");
 	   printf("                                                4. Exit\n\n\n\n\n");
 	
 	   printf("                                                Enter Your Choice: ");
@@ -30,10 +31,11 @@ void main_menu(){
 
             case 3:
                 system("clear");
-                printf("Statistics\n");
+                printf("Simulator Statistics\n");
                 break;
 
             case 4:
+               //function of the exit option in the main menu in a loop
 
                 do
                 {

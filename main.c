@@ -3,8 +3,8 @@
 #include "menu.h"
 
 int main(){
-	titlescreen();
-	main_menu();
+	titlescreen(); //calls the function of the titlescreen
+	main_menu(); //calls the function of the main menu
 	
 	return 0;
 }	

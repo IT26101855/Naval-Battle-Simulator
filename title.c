@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include "title.h"
 
+//display the title of the simulator
+
 void titlescreen(){
-       system("clear");
+       system("clear"); //clears the screen
        printf("         ----------------------------------------NAVAL BATTLE SIMULATOR----------------------------------------\n\n\n");
        printf("Module: Programming Methodology - (SE1012)\n\n");
        printf("Name: Chiran Herath\n\n");
@@ -12,8 +14,8 @@ void titlescreen(){
        printf("Computer Systems Engineering\n\n");
        printf("Year 1 Semester 1\n\n\n\n\n\n\n\n\n");
        printf("                                                 Press Enter to Continue... ");
-       getchar();
-       system("clear");
+       getchar(); 
+       system("clear"); //clears the screen
 	
 }
 	
