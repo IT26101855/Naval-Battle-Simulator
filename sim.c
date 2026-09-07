@@ -1,30 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #include "sim.h"
 #include "battlefield.h"
-
-// Data structure of battleship
-    struct Battleship {
-      char type;
-      float x;
-      float y;
-      float maxVelocity;
-};
-
-// Data structure of escort ships
-  struct Escortship{
-    int id;
-    char type;
-    float x;
-    float y;
-    float minVelocity;
-    float maxVelocity;
-    float minAngle;
-    float maxAngle;
-    float impactPower;
-    int isDestroyed;
-};
+#include "combat.h"
 
 // Part 1 A simulation function
     void part_1_A() {
@@ -137,4 +117,6 @@
 
     getchar();
     system("clear");
+
+    battle_calculations(b, e, N);
 }
