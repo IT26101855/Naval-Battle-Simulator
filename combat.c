@@ -145,7 +145,7 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
 
     fclose(fp);
 
-    printf("\nCombat results saved to 'part1A_results.txt' successfully!\n");
+    printf("\n                           Combat results saved to 'part1A_results.txt' successfully!\n");
     getchar();
     system("clear");
 }
