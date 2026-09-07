@@ -15,7 +15,12 @@
     struct Battleship b;
 
     // Getting the details of the battleship
-    printf("Enter Battleship Type (U M R S): ");
+    printf("--Battleship Name--                       --Notation--                       --Gun Name--\n\n\n\n");
+    printf(" USS Iowa(BB-61)                              U                           50-caliber Mark 7 gun\n");
+    printf(" MS King George V                             M                           (356 mm) Mark VII gun\n");
+    printf(" Richelieu                                    R                           (15 inch) Mle 1935 gun\n");
+    printf(" Sovetsky Soyuz-class                         S                           (16 inch) B-37 gun\n\n\n\n");
+    printf("Enter Battleship Type (U M R S): "); 
     scanf(" %c", &b.type);
 
     printf("Enter Battleship's X Position: ");

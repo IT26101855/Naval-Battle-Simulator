@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "sim.h"
+#include "combat.h"
 
 void main_menu(){
 	int select;
@@ -31,8 +32,35 @@ void main_menu(){
 
             case 3:
                 system("clear");
-                printf("Simulator Statistics\n");
-                break;
+
+		FILE *fp;
+                char line[256];
+
+                fp = fopen("part1_A_results.txt", "r");
+
+              printf("                                        --------------- Simulator Statistics---------------\n\n\n\n\n");
+
+              if (fp == NULL)
+                {
+                    printf("No simulation results found!\n");
+        }
+              else
+                {
+                     while (fgets(line, sizeof(line), fp) != NULL)
+                          {  
+                              printf("%s", line);
+                          }
+
+                     fclose(fp);
+         }
+
+           
+           printf("\n\n\n\n\n\n\n\n\n                                                Press Enter to return to Main Menu...");
+           getchar();
+           getchar();
+
+           system("clear");
+           break;
 
             case 4:
                //function of the exit option in the main menu in a loop

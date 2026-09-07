@@ -1,18 +1,83 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "combat.h"
 
 #define GRAVITY 9.81
 
+// Helper function to get full name of Escort Ship Type
+const char* get_escort_name(char type) {
+    switch (type) {
+        case 'A': return "1936A-class Destroyer";
+        case 'B': return "Gabbiano-class Corvette";
+        case 'C': return "Matsu-class Destroyer";
+        case 'D': return "F-class Escort Ship";
+        case 'E': return "Japanese Kaibokan";
+        default:  return "Unknown Escort Ship";
+    }
+}
+
+void show_simulation_statistics() {
+    FILE *fp = fopen("part1_A_results.txt", "r");
+
+    if (fp == NULL) {
+        printf("\n[!] No simulation history found (part1_A_results.txt does not exist).\n");
+        printf("    Please run a simulation first!\n");
+        printf("\nPress Enter to return...");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+
+    system("clear");
+    printf("                                        ----- PAST SIMULATION STATISTICS-----           \n");
+
+    char ch;
+    while ((ch = fgetc(fp)) != EOF) {
+        putchar(ch);
+    }
+
+    fclose(fp);
+
+    printf("\n=====================================================\n");
+    printf("End of Statistics.\n\n"); 
+    printf ("                                     Press Enter to return to Main Menu...");
+    while (getchar() != '\n');
+    getchar();
+}
+
 void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
-    FILE *fp = fopen("part1_A_results.txt", "w");
+    FILE *fp = fopen("part1_A_results.txt", "a");
     if (fp == NULL) {
         printf("Error opening file for writing!\n");
         return;
     }
 
-   /* ================= INITIAL CONDITIONS ================= */
+    // Find the next simulation number 
+    FILE *countFile = fopen("part1_A_results.txt", "r");
+
+    int simulationNumber = 1;
+    char line[200];
+
+    if (countFile != NULL)
+      {
+        while (fgets(line, sizeof(line), countFile) != NULL)
+          {
+             if (strstr(line, "=== INITIAL BATTLEFIELD CONDITIONS ===") != NULL)
+               {
+                    simulationNumber++;
+        }
+    }
+
+    fclose(countFile);
+}
+
+fprintf(fp, "\n\n========================================\n");
+fprintf(fp, "              SIMULATION %d\n", simulationNumber);
+fprintf(fp, "========================================\n\n");
+
+     //--- INITIAL CONDITIONS--- 
 
     fprintf(fp, "=== INITIAL BATTLEFIELD CONDITIONS ===\n\n");
 
@@ -37,13 +102,17 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
         fprintf(fp, "Impact Power: %.2f\n", e[i].impactPower);
     }
 
-    /* ================= SIMULATION ================= */
+    //---SIMULATION--- 
 
     int b_sunk = 0;
     int sunk_by_id = -1;
     int hit_e_count = 0;
 
     float battle_duration = 0.0;
+
+    // Calculate maximum flight time of Battleship's shell (at optimal 45 degrees)
+    float vy = b.maxVelocity * sin(45.0 * M_PI / 180.0);
+    float time_to_hit_b = (2.0 * vy) / GRAVITY;
 
     for (int i = 0; i < N; i++)
     {
@@ -53,9 +122,8 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
 
         float distance = sqrt(dx * dx + dy * dy);
 
-        /* -------------------------------------------------
-           Battleship attacks Escort Ship
-           ------------------------------------------------- */
+   
+          // battleship attacks escort Ship
 
         float B_range =
             (b.maxVelocity * b.maxVelocity) / GRAVITY;
@@ -64,11 +132,13 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
         {
             e[i].isDestroyed = 1;
             hit_e_count++;
-        }
 
-        /* -------------------------------------------------
-           Escort Ship attacks Battleship
-           ------------------------------------------------- */
+	    if (time_to_hit_b > battle_duration) {
+                battle_duration = time_to_hit_b;
+            }
+        }
+          // escort ship attacks battleship
+          
 
         float minAngleRad =
             e[i].minAngle * M_PI / 180.0;
@@ -92,7 +162,7 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
 
             /*
              * Since one shell impact can destroy
-             * the Battleship in Part 1-A,
+             * the Battleship.
              * we can stop after the first successful hit.
              */
             break;
@@ -103,19 +173,20 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
 
     fprintf(fp, "\n\n==== SIMULATION RESULTS ====\n\n");
 
-    if (b_sunk)
+    if (b_sunk && sunk_by_id != -1 )
     {
         fprintf(fp, "STATUS: Battleship SANK!\n");
-        fprintf(fp, "Sunk by Escort Ship ID: %d\n", sunk_by_id);
+        fprintf(fp, "Sunk by Escort Ship ID: %d (Type: E_%c - %s) \n", e[sunk_by_id].id, e[sunk_by_id].type, get_escort_name(e[sunk_by_id].type));
     }
     else
     {
         fprintf(fp, "STATUS: Battleship SURVIVED!\n");
         fprintf(fp, "Total Escort Ships Hit: %d\n", hit_e_count);
-        fprintf(fp, "Battle Duration: %.2f seconds\n", battle_duration);
-    }
+    }   
+       	fprintf(fp, "Battle Duration (Max Time to Hit): %.2f seconds\n", battle_duration);
+    
 
-    /* ================= FINAL CONDITIONS ================= */
+    // ---FINAL CONDITIONS---
 
     fprintf(fp, "\n\n==== FINAL BATTLEFIELD CONDITIONS ====\n\n");
 
@@ -129,7 +200,7 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
     for (int i = 0; i < N; i++)
     {
         fprintf(fp, "\nEscort Ship ID: %d\n", e[i].id);
-        fprintf(fp, "Type: E_%c\n", e[i].type);
+        fprintf(fp, "Type: E_%c\n (%s)\n", e[i].type, get_escort_name(e[i].type) );
         fprintf(fp, "Position: (%.2f, %.2f)\n",
                 e[i].x, e[i].y);
 
@@ -139,7 +210,7 @@ void battle_calculations(struct Battleship b, struct Escortship e[], int N) {
         }
         else
         {
-            fprintf(fp, "Status: ALIVE\n");
+            fprintf(fp, "Status: SURVIVED\n");
         }
     }
 
