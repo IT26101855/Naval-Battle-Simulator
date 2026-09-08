@@ -70,7 +70,6 @@
         // Assign specific values based on Escort Ship Type
         switch(e[i].type) {
             case 'A':
-                e[i].impactPower = 0.08f;
                 e[i].minAngle = ((float)rand() / RAND_MAX) * 70.0f;
                 e[i].maxAngle = e[i].minAngle + 20.0f;
                 e[i].minVelocity = ((float)rand() / RAND_MAX) * 10.0f;
@@ -78,7 +77,6 @@
                 break;
 
             case 'B':
-                e[i].impactPower = 0.06f;
                 e[i].minAngle = ((float)rand() / RAND_MAX) * 60.0f;
                 e[i].maxAngle = e[i].minAngle + 30.0f;
                 e[i].minVelocity = ((float)rand() / RAND_MAX) * 10.0f;
@@ -86,7 +84,6 @@
                 break;
 
             case 'C':
-                e[i].impactPower = 0.07f;
                 e[i].minAngle = ((float)rand() / RAND_MAX) * 65.0f;
                 e[i].maxAngle = e[i].minAngle + 25.0f;
                 e[i].minVelocity = ((float)rand() / RAND_MAX) * 10.0f;
@@ -94,7 +91,6 @@
                 break;
 
             case 'D':
-                e[i].impactPower = 0.05f;
                 e[i].minAngle = ((float)rand() / RAND_MAX) * 40.0f;
                 e[i].maxAngle = e[i].minAngle + 50.0f;
                 e[i].minVelocity = ((float)rand() / RAND_MAX) * 10.0f;
@@ -102,7 +98,6 @@
                 break;
 
             case 'E':
-                e[i].impactPower = 0.04f;
                 e[i].minAngle = ((float)rand() / RAND_MAX) * 20.0f;
                 e[i].maxAngle = e[i].minAngle + 70.0f;
                 e[i].minVelocity = ((float)rand() / RAND_MAX) * 10.0f;

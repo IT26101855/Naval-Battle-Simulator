@@ -1,14 +1,125 @@
 
 
-========================================
-              SIMULATION 1
-========================================
+                             ========================================
+                                             SIMULATION 1
+                             ========================================
 
 === INITIAL BATTLEFIELD CONDITIONS ===
 
 Battleship:
-Type: S
-Position: (300.00, 200.00)
+Type: M
+Position: (300.00, 400.00)
+Max Velocity: 80.00
+
+Total Escort Ships (N): 6
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (107.52, 2454.66)
+Minimum Velocity: 6.66
+Maximum Velocity: 13.06
+Minimum Angle: 15.55 degrees
+Maximum Angle: 40.55 degrees
+
+Escort Ship ID: 2
+Type: E_D
+Position: (314.86, 1175.16)
+Minimum Velocity: 0.52
+Maximum Velocity: 10.04
+Minimum Angle: 22.10 degrees
+Maximum Angle: 72.10 degrees
+
+Escort Ship ID: 3
+Type: E_E
+Position: (1069.11, 1340.67)
+Minimum Velocity: 9.04
+Maximum Velocity: 34.79
+Minimum Angle: 11.00 degrees
+Maximum Angle: 81.00 degrees
+
+Escort Ship ID: 4
+Type: E_C
+Position: (763.59, 1969.53)
+Minimum Velocity: 9.41
+Maximum Velocity: 60.48
+Minimum Angle: 12.18 degrees
+Maximum Angle: 37.18 degrees
+
+Escort Ship ID: 5
+Type: E_C
+Position: (2244.92, 1422.97)
+Minimum Velocity: 8.91
+Maximum Velocity: 24.32
+Minimum Angle: 8.24 degrees
+Maximum Angle: 33.24 degrees
+
+Escort Ship ID: 6
+Type: E_B
+Position: (2211.08, 867.57)
+Minimum Velocity: 1.24
+Maximum Velocity: 1.02
+Minimum Angle: 47.27 degrees
+Maximum Angle: 77.27 degrees
+
+
+==== SIMULATION RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Total Escort Ships Hit: 0
+Battle Duration: 0.00 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: M
+Position: (300.00, 400.00)
+Max Velocity: 80.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (107.52, 2454.66)
+Status: SURVIVED
+
+Escort Ship ID: 2
+Type: E_D
+Position: (314.86, 1175.16)
+Status: SURVIVED
+
+Escort Ship ID: 3
+Type: E_E
+Position: (1069.11, 1340.67)
+Status: SURVIVED
+
+Escort Ship ID: 4
+Type: E_C
+Position: (763.59, 1969.53)
+Status: SURVIVED
+
+Escort Ship ID: 5
+Type: E_C
+Position: (2244.92, 1422.97)
+Status: SURVIVED
+
+Escort Ship ID: 6
+Type: E_B
+Position: (2211.08, 867.57)
+Status: SURVIVED
+
+
+                             ========================================
+                                             SIMULATION 2
+                             ========================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (200.00, 700.00)
 Max Velocity: 120.00
 
 Total Escort Ships (N): 6
@@ -16,324 +127,96 @@ Total Escort Ships (N): 6
 ----- ESCORT SHIP DETAILS -----
 
 Escort Ship ID: 1
-Type: E_A
-Position: (367.20, 24.77)
-Minimum Velocity: 6.54
-Maximum Velocity: 144.00
-Minimum Angle: 33.92 degrees
-Maximum Angle: 53.92 degrees
-Impact Power: 0.08
+Type: E_C
+Position: (1369.76, 563.83)
+Minimum Velocity: 7.90
+Maximum Velocity: 73.34
+Minimum Angle: 49.75 degrees
+Maximum Angle: 74.75 degrees
 
 Escort Ship ID: 2
-Type: E_E
-Position: (258.54, 498.63)
-Minimum Velocity: 5.94
-Maximum Velocity: 16.87
-Minimum Angle: 1.43 degrees
-Maximum Angle: 71.43 degrees
-Impact Power: 0.04
+Type: E_A
+Position: (1120.17, 698.50)
+Minimum Velocity: 8.94
+Maximum Velocity: 144.00
+Minimum Angle: 7.25 degrees
+Maximum Angle: 27.25 degrees
 
 Escort Ship ID: 3
 Type: E_A
-Position: (469.61, 31.35)
-Minimum Velocity: 9.68
+Position: (794.73, 439.10)
+Minimum Velocity: 6.00
 Maximum Velocity: 144.00
-Minimum Angle: 48.60 degrees
-Maximum Angle: 68.60 degrees
-Impact Power: 0.08
+Minimum Angle: 16.18 degrees
+Maximum Angle: 36.18 degrees
 
 Escort Ship ID: 4
-Type: E_D
-Position: (510.48, 531.80)
-Minimum Velocity: 4.94
-Maximum Velocity: 42.20
-Minimum Angle: 18.14 degrees
-Maximum Angle: 68.14 degrees
-Impact Power: 0.05
+Type: E_E
+Position: (667.85, 982.10)
+Minimum Velocity: 8.89
+Maximum Velocity: 17.59
+Minimum Angle: 2.72 degrees
+Maximum Angle: 72.72 degrees
 
 Escort Ship ID: 5
-Type: E_B
-Position: (52.65, 690.40)
-Minimum Velocity: 7.12
-Maximum Velocity: 19.37
-Minimum Angle: 48.24 degrees
-Maximum Angle: 78.24 degrees
-Impact Power: 0.06
+Type: E_D
+Position: (168.16, 705.61)
+Minimum Velocity: 6.16
+Maximum Velocity: 20.83
+Minimum Angle: 6.46 degrees
+Maximum Angle: 56.46 degrees
 
 Escort Ship ID: 6
-Type: E_A
-Position: (787.92, 29.59)
-Minimum Velocity: 4.44
-Maximum Velocity: 144.00
-Minimum Angle: 5.03 degrees
-Maximum Angle: 25.03 degrees
-Impact Power: 0.08
+Type: E_E
+Position: (145.37, 1487.51)
+Minimum Velocity: 0.10
+Maximum Velocity: 44.11
+Minimum Angle: 2.61 degrees
+Maximum Angle: 72.61 degrees
 
 
 ==== SIMULATION RESULTS ====
 
 STATUS: Battleship SANK!
-Sunk by Escort Ship ID: 2 (Type: E_E - Japanese Kaibokan) 
-Battle Duration (Max Time to Hit): 17.30 seconds
-
-
-==== FINAL BATTLEFIELD CONDITIONS ====
-
-Battleship:
-Type: S
-Position: (300.00, 200.00)
-Max Velocity: 120.00
-
-Escort Ships:
-
-Escort Ship ID: 1
-Type: E_A
- (1936A-class Destroyer)
-Position: (367.20, 24.77)
-Status: DESTROYED
-
-Escort Ship ID: 2
-Type: E_E
- (Japanese Kaibokan)
-Position: (258.54, 498.63)
-Status: SURVIVED
-
-Escort Ship ID: 3
-Type: E_A
- (1936A-class Destroyer)
-Position: (469.61, 31.35)
-Status: SURVIVED
-
-Escort Ship ID: 4
-Type: E_D
- (F-class Escort Ship)
-Position: (510.48, 531.80)
-Status: SURVIVED
-
-Escort Ship ID: 5
-Type: E_B
- (Gabbiano-class Corvette)
-Position: (52.65, 690.40)
-Status: SURVIVED
-
-Escort Ship ID: 6
-Type: E_A
- (1936A-class Destroyer)
-Position: (787.92, 29.59)
-Status: SURVIVED
-
-
-========================================
-              SIMULATION 2
-========================================
-
-=== INITIAL BATTLEFIELD CONDITIONS ===
-
-Battleship:
-Type: U
-Position: (200.00, 250.00)
-Max Velocity: 90.00
-
-Total Escort Ships (N): 5
-
------ ESCORT SHIP DETAILS -----
-
-Escort Ship ID: 1
-Type: E_A
-Position: (552.16, 597.08)
-Minimum Velocity: 8.57
-Maximum Velocity: 108.00
-Minimum Angle: 69.27 degrees
-Maximum Angle: 89.27 degrees
-Impact Power: 0.08
-
-Escort Ship ID: 2
-Type: E_D
-Position: (336.26, 787.85)
-Minimum Velocity: 8.27
-Maximum Velocity: 10.35
-Minimum Angle: 33.87 degrees
-Maximum Angle: 83.87 degrees
-Impact Power: 0.05
-
-Escort Ship ID: 3
-Type: E_B
-Position: (586.74, 116.31)
-Minimum Velocity: 9.50
-Maximum Velocity: 36.53
-Minimum Angle: 16.57 degrees
-Maximum Angle: 46.57 degrees
-Impact Power: 0.06
-
-Escort Ship ID: 4
-Type: E_E
-Position: (294.89, 493.59)
-Minimum Velocity: 5.67
-Maximum Velocity: 65.94
-Minimum Angle: 12.30 degrees
-Maximum Angle: 82.30 degrees
-Impact Power: 0.04
-
-Escort Ship ID: 5
-Type: E_D
-Position: (314.03, 697.33)
-Minimum Velocity: 9.44
-Maximum Velocity: 78.74
-Minimum Angle: 28.20 degrees
-Maximum Angle: 78.20 degrees
-Impact Power: 0.05
-
-
-==== SIMULATION RESULTS ====
-
-STATUS: Battleship SURVIVED!
-Total Escort Ships Hit: 5
-Battle Duration (Max Time to Hit): 12.97 seconds
+Sunk by Escort Ship ID: 2
+Battle Duration: 13.44 seconds
 
 
 ==== FINAL BATTLEFIELD CONDITIONS ====
 
 Battleship:
 Type: U
-Position: (200.00, 250.00)
-Max Velocity: 90.00
-
-Escort Ships:
-
-Escort Ship ID: 1
-Type: E_A
- (1936A-class Destroyer)
-Position: (552.16, 597.08)
-Status: DESTROYED
-
-Escort Ship ID: 2
-Type: E_D
- (F-class Escort Ship)
-Position: (336.26, 787.85)
-Status: DESTROYED
-
-Escort Ship ID: 3
-Type: E_B
- (Gabbiano-class Corvette)
-Position: (586.74, 116.31)
-Status: DESTROYED
-
-Escort Ship ID: 4
-Type: E_E
- (Japanese Kaibokan)
-Position: (294.89, 493.59)
-Status: DESTROYED
-
-Escort Ship ID: 5
-Type: E_D
- (F-class Escort Ship)
-Position: (314.03, 697.33)
-Status: DESTROYED
-
-
-========================================
-              SIMULATION 3
-========================================
-
-=== INITIAL BATTLEFIELD CONDITIONS ===
-
-Battleship:
-Type: S
-Position: (300.00, 100.00)
-Max Velocity: 120.00
-
-Total Escort Ships (N): 5
-
------ ESCORT SHIP DETAILS -----
-
-Escort Ship ID: 1
-Type: E_B
-Position: (958.94, 214.91)
-Minimum Velocity: 2.56
-Maximum Velocity: 18.49
-Minimum Angle: 25.12 degrees
-Maximum Angle: 55.12 degrees
-Impact Power: 0.06
-
-Escort Ship ID: 2
-Type: E_A
-Position: (674.64, 672.97)
-Minimum Velocity: 5.14
-Maximum Velocity: 144.00
-Minimum Angle: 5.77 degrees
-Maximum Angle: 25.77 degrees
-Impact Power: 0.08
-
-Escort Ship ID: 3
-Type: E_E
-Position: (176.32, 388.10)
-Minimum Velocity: 8.17
-Maximum Velocity: 7.09
-Minimum Angle: 11.19 degrees
-Maximum Angle: 81.19 degrees
-Impact Power: 0.04
-
-Escort Ship ID: 4
-Type: E_C
-Position: (249.23, 900.44)
-Minimum Velocity: 1.79
-Maximum Velocity: 75.34
-Minimum Angle: 46.71 degrees
-Maximum Angle: 71.71 degrees
-Impact Power: 0.07
-
-Escort Ship ID: 5
-Type: E_A
-Position: (991.97, 941.90)
-Minimum Velocity: 3.70
-Maximum Velocity: 144.00
-Minimum Angle: 29.36 degrees
-Maximum Angle: 49.36 degrees
-Impact Power: 0.08
-
-
-==== SIMULATION RESULTS ====
-
-STATUS: Battleship SANK!
-Sunk by Escort Ship ID: 3 (Type: E_E - Japanese Kaibokan) 
-Battle Duration (Max Time to Hit): 17.30 seconds
-
-
-==== FINAL BATTLEFIELD CONDITIONS ====
-
-Battleship:
-Type: S
-Position: (300.00, 100.00)
+Position: (200.00, 700.00)
 Max Velocity: 120.00
 
 Escort Ships:
 
 Escort Ship ID: 1
-Type: E_B
- (Gabbiano-class Corvette)
-Position: (958.94, 214.91)
+Type: E_C
+Position: (1369.76, 563.83)
 Status: DESTROYED
 
 Escort Ship ID: 2
 Type: E_A
- (1936A-class Destroyer)
-Position: (674.64, 672.97)
+Position: (1120.17, 698.50)
 Status: DESTROYED
 
 Escort Ship ID: 3
-Type: E_E
- (Japanese Kaibokan)
-Position: (176.32, 388.10)
+Type: E_A
+Position: (794.73, 439.10)
 Status: SURVIVED
 
 Escort Ship ID: 4
-Type: E_C
- (Matsu-class Destroyer)
-Position: (249.23, 900.44)
+Type: E_E
+Position: (667.85, 982.10)
 Status: SURVIVED
 
 Escort Ship ID: 5
-Type: E_A
- (1936A-class Destroyer)
-Position: (991.97, 941.90)
+Type: E_D
+Position: (168.16, 705.61)
+Status: SURVIVED
+
+Escort Ship ID: 6
+Type: E_E
+Position: (145.37, 1487.51)
 Status: SURVIVED
