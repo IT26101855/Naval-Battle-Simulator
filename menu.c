@@ -19,15 +19,93 @@ void main_menu() {
         printf("                                                Enter Your Choice: ");
         
         if (scanf("%d", &select) != 1) {
-            while (getchar() != '\n'); // Clear buffer on invalid input
+            while (getchar() != '\n'); //clear buffer on invalid input
             continue;
         }
 
-        switch (select) {
-            case 1:
-                system("clear");
-                part_1_A();
+        switch (select){
+                case 1:
+                {
+                  int simChoice;
+
+                  do
+                      {
+                         system("clear");
+
+                         printf("                                                    |Start Simulation|\n\n\n\n");
+                         printf("                                                1. Part 1-A\n\n");
+                         printf("                                                2. Part 1-B\n\n");
+                         printf("                                                3. Back to Main Menu\n\n\n");
+
+                         printf("                                                Enter Your Choice: ");
+
+                         if (scanf("%d", &simChoice) != 1)
+                             {
+                                while (getchar() != '\n');
+                          continue;
+                         }
+
+                          switch (simChoice)
+                                {
+                                  case 1:
+                                  system("clear");
+                                  part_1_A();
+                                  break;
+
+                                  case 2:
+                                    {
+                                       int bChoice;
+
+                                        do
+                                          {
+                                             system("clear");
+
+                                             printf("                                                |Part 1-B|\n\n\n\n");
+                                             printf("                                                1. Simulation 1\n\n");
+                                             printf("                                                2. Back\n\n\n");
+
+                                             printf("                                                Enter Your Choice: ");
+
+                                              if (scanf("%d", &bChoice) != 1)
+                                                    {
+                                                      while (getchar() != '\n');
+                                                      continue;
+                                                     }
+
+                                           switch (bChoice)
+                                             {
+                        case 1:
+                            system("clear");
+                            simulation_part_B_1();
+                            break;
+
+                        case 2:
+                            break;
+
+                        default:
+                            printf("\nInvalid choice!");
+                            while (getchar() != '\n');
+                            getchar();
+                    }
+
+                } while (bChoice != 2);
+
                 break;
+            }
+
+            case 3:
+                break;
+
+            default:
+                printf("\nInvalid choice!");
+                while (getchar() != '\n');
+                getchar();
+        }
+
+    } while (simChoice != 3);
+
+    break;
+}
 
             case 2:
                 system("clear");
@@ -45,36 +123,126 @@ void main_menu() {
 
             case 3:
                   system("clear");
-		  FILE *fp;
-                  char line[256];
+		   
+{
+    int statChoice;
+    FILE *fp;
+    char line[256];
 
-                 fp = fopen("part1_A_results.txt", "r");
+    do
+    {
+        system("clear");
 
-                 printf("========================================\n");
-                 printf("              STATISTICS\n");
-                 printf("========================================\n\n");
+        printf("                                                    |Simulator Statistics|\n\n\n\n");
 
-                 if (fp == NULL)
-                    {
-                       printf("No simulation results found!\n");
-                   }
-                  else
-                    {
-                      while (fgets(line, sizeof(line), fp) != NULL)
-        {     
-            printf("%s", line);
+        printf("                                                1. Part 1-A Simulation\n\n");
+        printf("                                                2. Part 1-B Simulation 1\n\n");
+        printf("                                                3. Back to Main Menu\n\n\n");
+
+        printf("                                                Enter Your Choice: ");
+
+        if (scanf("%d", &statChoice) != 1)
+        {
+            while (getchar() != '\n');
+            continue;
         }
 
-        fclose(fp);
-    }	  
 
-    printf("\n\n========================================\n");
-    printf("Press Enter to return to Main Menu...");
-    getchar();
-    getchar();
+        switch (statChoice)
+        {
+           
+             // part 1 A results
 
-    system("clear");
+            case 1:
+
+                system("clear");
+
+                fp = fopen("part1_A_results.txt", "r");
+
+                printf("========================================\n");
+                printf("          PART 1-A STATISTICS\n");
+                printf("========================================\n\n");
+
+                if (fp == NULL)
+                {
+                    printf("No Part 1-A simulation results found!\n");
+                }
+                else
+                {
+                    while (fgets(line, sizeof(line), fp) != NULL)
+                    {
+                        printf("%s", line);
+                    }
+
+                    fclose(fp);
+                }
+
+                printf("\n\n========================================\n");
+                printf("Press Enter to return...");
+
+                while (getchar() != '\n');
+                getchar();
+
+                break;
+
+
+              // part 1 B simulation 1 results
+
+            case 2:
+
+                system("clear");
+
+                fp = fopen("part_1_B_simulation_1.txt", "r");
+
+                printf("========================================\n");
+                printf("       PART 1-B SIMULATION 1\n");
+                printf("              STATISTICS\n");
+                printf("========================================\n\n");
+
+                if (fp == NULL)
+                {
+                    printf("No Part 1-B Simulation 1 results found!\n");
+                }
+                else
+                {
+                    while (fgets(line, sizeof(line), fp) != NULL)
+                    {
+                        printf("%s", line);
+                    }
+
+                    fclose(fp);
+                }
+
+                printf("\n\n========================================\n");
+                printf("Press Enter to return...");
+
+                while (getchar() != '\n');
+                getchar();
+
+                break;
+
+
+           
+              // go back to previous window
+
+            case 3:
+                break;
+
+
+            default:
+
+                printf("\nInvalid choice!");
+
+                while (getchar() != '\n');
+                getchar();
+
+                break;
+        }
+
+    } while (statChoice != 3);
+
     break;
+}
  
            
 

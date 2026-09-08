@@ -3,24 +3,24 @@
 #include "battlefield.h"
 
 void battlefield(float *D, int *N) {
-    // Valid Canvas Dimension (D) Input
+    //valid canvas dimension (D) input
     while (1) {
         printf("Enter Battlefield dimensions (D > 0): ");
         if (scanf("%f", D) == 1 && *D > 0) {
             break;
         }
         printf("Invalid input! Please enter a positive number for dimension.\n");
-        while (getchar() != '\n'); // Clear buffer
+        while (getchar() != '\n'); // clear buffer
     }
 
-    // Valid Escort Ships Count (N) Input
+    //valid escort ships count (N) input
     while (1) {
         printf("Enter Number of Escort Ships (N > 0): ");
         if (scanf("%d", N) == 1 && *N > 0) {
             break;
         }
         printf("Invalid input! Please enter a positive integer for ship count.\n");
-        while (getchar() != '\n'); // Clear buffer
+        while (getchar() != '\n'); 
     }
 
     printf("\n\nBattlefield: (0.00, 0.00) to (%.2f, %.2f)\n", *D, *D);
