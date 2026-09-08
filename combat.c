@@ -341,8 +341,7 @@ int battle_calculations_B1(struct Battleship b,
 
             hit_e_count++;
 
-            float hit_time =
-                calculateFlightTime(b.maxVelocity, 45.0);
+            float hit_time = calculateFlightTime(b.maxVelocity, 45.0);
 
             time_to_hit[i] = hit_time;
 
@@ -413,6 +412,305 @@ int battle_calculations_B1(struct Battleship b,
     {
         fprintf(fp, "STATUS: Battleship SANK!\n");
 
+        fprintf(fp,"Sunk by Escort Ship ID: %d\n",sunk_by_id);
+
+        fprintf(fp,"Battle Duration: %.2f seconds\n",battle_duration);
+
+        fprintf(fp,"\nSimulation stopped because Battleship was destroyed.\n");
+    }
+    else
+    {
+        fprintf(fp, "STATUS: Battleship SURVIVED!\n");
+
+        fprintf(fp,"Total Escort Ships Hit: %d\n",hit_e_count);
+
+        fprintf(fp,"Battle Duration: %.2f seconds\n",battle_duration);
+
+
+        if (hit_e_count > 0)
+        {
+            fprintf(fp,
+                    "\n----- ESCORT SHIPS HIT BY B -----\n");
+
+            for (int i = 0; i < N; i++)
+            {
+                if (time_to_hit[i] > 0.0)
+                {
+                    fprintf(fp,"\nEscort Ship ID: %d\n",e[i].id);
+
+                    fprintf(fp,"Type: E_%c\n",e[i].type);
+
+                    fprintf(fp,"Time to Hit: %.2f seconds\n",time_to_hit[i]);
+                }
+            }
+        }
+    }
+
+
+    
+      //final battlefield conditions
+
+    fprintf(fp,
+            "\n\n==== FINAL BATTLEFIELD CONDITIONS ====\n\n");
+
+    fprintf(fp, "Battleship:\n");
+
+    fprintf(fp,"Type: %c\n", b.type);
+
+    fprintf(fp,"Position: (%.2f, %.2f)\n", b.x, b.y);
+
+    fprintf(fp,"Max Velocity: %.2f\n",b.maxVelocity);
+
+
+    fprintf(fp, "\nEscort Ships:\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        fprintf(fp,"\nEscort Ship ID: %d\n",e[i].id);
+        fprintf(fp,"Type: E_%c\n",e[i].type);
+        fprintf(fp,"Position: (%.2f, %.2f)\n", e[i].x, e[i].y);
+
+        if (e[i].isDestroyed)
+        {
+            fprintf(fp, "Status: DESTROYED\n");
+        }
+        else
+        {
+            fprintf(fp, "Status: SURVIVED\n");
+        }
+    }
+
+
+    fclose(fp);
+
+    printf("\nIteration %d results saved to part_1_B_simulation_1.txt\n",
+           iteration);
+
+    return b_sunk;
+}
+
+int battle_calculations_B2(struct Battleship b,
+                           struct Escortship e[],
+                           int N,
+                           int iteration,
+                           int jammed,
+                           float thetaMin)
+{
+    FILE *fp = fopen("part_1_B_simulation_2.txt", "a");
+
+    if (fp == NULL)
+    {
+        printf("Error opening Part 1-B Simulation 2 file!\n");
+        return 0;
+    }
+
+    int b_sunk = 0;
+    int sunk_by_id = -1;
+    int hit_e_count = 0;
+
+    float battle_duration = 0.0;
+    float time_to_hit[N];
+
+    for (int i = 0; i < N; i++)
+    {
+        time_to_hit[i] = 0.0;
+    }
+
+
+    fprintf(fp, "\n\n");
+    fprintf(fp, "====================================================\n");
+    fprintf(fp, "             PART 1-B SIMULATION 2\n");
+    fprintf(fp, "                   ITERATION %d\n", iteration);
+    fprintf(fp, "====================================================\n\n");
+
+
+      //initial conditions
+
+    fprintf(fp, "=== INITIAL BATTLEFIELD CONDITIONS ===\n\n");
+
+    fprintf(fp, "Battleship:\n");
+    fprintf(fp, "Type: %c\n", b.type);
+    fprintf(fp, "Position: (%.2f, %.2f)\n", b.x, b.y);
+    fprintf(fp, "Max Velocity: %.2f\n", b.maxVelocity);
+
+    if (jammed)
+    {
+        fprintf(fp, "Gun Status: JAMMED\n");
+        fprintf(fp,"Allowed Vertical Angle: %.2f - 90.00 degrees\n",thetaMin);
+    }
+    else
+    {
+        fprintf(fp, "Gun Status: NORMAL\n");
+        fprintf(fp,"Allowed Vertical Angle: 0.00 - 90.00 degrees\n");
+    }
+
+    fprintf(fp, "\nTotal Escort Ships (N): %d\n\n", N);
+
+    fprintf(fp, "----- ESCORT SHIP DETAILS -----\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        if (e[i].isDestroyed)
+        {
+            continue;
+        }
+
+        fprintf(fp, "\nEscort Ship ID: %d\n", e[i].id);
+        fprintf(fp, "Type: E_%c\n", e[i].type);
+
+        fprintf(fp,"Position: (%.2f, %.2f)\n",e[i].x,e[i].y);
+
+        fprintf(fp,"Minimum Velocity: %.2f\n",e[i].minVelocity);
+
+        fprintf(fp,"Maximum Velocity: %.2f\n",e[i].maxVelocity);
+
+        fprintf(fp,"Minimum Angle: %.2f degrees\n",e[i].minAngle);
+
+        fprintf(fp,"Maximum Angle: %.2f degrees\n",e[i].maxAngle);
+    }
+
+
+       //battle 
+
+    for (int i = 0; i < N; i++)
+    {
+        /*
+           destroyed E ships cannot participate
+           in later iterations.
+         */
+
+        if (e[i].isDestroyed)
+        {
+            continue;
+        }
+
+
+        float dx = b.x - e[i].x;
+        float dy = b.y - e[i].y;
+
+        float distance = sqrt(dx * dx + dy * dy);
+
+
+        
+         // battleship attacks escort ship
+
+        /*
+          Select a vertical firing angle.
+         
+           before jamming:
+                0 - 90 degrees
+         
+           After jamming:
+                thetaMin - 90 degrees
+         */
+
+        float firingAngle;
+
+        if (jammed)
+        {
+            firingAngle = thetaMin +((float)rand() / RAND_MAX) *(90.0 - thetaMin);
+        }
+        else
+        {
+            firingAngle =((float)rand() / RAND_MAX) * 90.0;
+        }
+
+
+        float angleRad =
+            firingAngle * M_PI / 180.0;
+
+
+        /*
+         * Projectile horizontal range.
+         */
+
+        float B_range = (b.maxVelocity * b.maxVelocity *sin(2.0 * angleRad)) / GRAVITY;
+
+
+        fprintf(fp,"\nB firing angle against E_%c: %.2f degrees\n",e[i].type,firingAngle);
+
+        fprintf(fp,"Distance to E: %.2f\n",distance);
+
+        fprintf(fp,"B Attack Range: %.2f\n",B_range);
+
+
+        if (distance <= B_range)
+        {
+            e[i].isDestroyed = 1;
+
+            hit_e_count++;
+
+            float hit_time =
+                calculateFlightTime(b.maxVelocity,firingAngle);
+
+            time_to_hit[i] = hit_time;
+
+            if (hit_time > battle_duration)
+            {
+                battle_duration = hit_time;
+            }
+        }
+
+
+          //escort ship attaacks battleship
+
+        if (e[i].isDestroyed)
+        {
+            continue;
+        }
+
+
+        float minAngleRad =
+            e[i].minAngle * M_PI / 180.0;
+
+        float maxAngleRad =
+            e[i].maxAngle * M_PI / 180.0;
+
+
+        float E_range_min =
+            (e[i].minVelocity *
+             e[i].minVelocity *
+             sin(2.0 * minAngleRad)) / GRAVITY;
+
+
+        float E_range_max =
+            (e[i].maxVelocity *
+             e[i].maxVelocity *
+             sin(2.0 * maxAngleRad)) / GRAVITY;
+
+
+        if (distance >= E_range_min &&
+            distance <= E_range_max)
+        {
+            b_sunk = 1;
+
+            sunk_by_id = e[i].id;
+
+            battle_duration =
+                calculateFlightTime(
+                    e[i].maxVelocity,
+                    e[i].maxAngle
+                );
+
+            break;
+        }
+    }
+
+
+ 
+      //results
+
+    fprintf(fp, "\n\n");
+    fprintf(fp,
+            "==== ITERATION %d RESULTS ====\n\n",
+            iteration);
+
+
+    if (b_sunk)
+    {
+        fprintf(fp,
+                "STATUS: Battleship SANK!\n");
+
         fprintf(fp,
                 "Sunk by Escort Ship ID: %d\n",
                 sunk_by_id);
@@ -426,16 +724,12 @@ int battle_calculations_B1(struct Battleship b,
     }
     else
     {
-        fprintf(fp, "STATUS: Battleship SURVIVED!\n");
+        fprintf(fp,
+                "STATUS: Battleship SURVIVED!\n");
 
         fprintf(fp,
                 "Total Escort Ships Hit: %d\n",
                 hit_e_count);
-
-        fprintf(fp,
-                "Battle Duration: %.2f seconds\n",
-                battle_duration);
-
 
         if (hit_e_count > 0)
         {
@@ -460,11 +754,14 @@ int battle_calculations_B1(struct Battleship b,
                 }
             }
         }
+
+        fprintf(fp,
+                "\nBattle Duration: %.2f seconds\n",
+                battle_duration);
     }
 
 
-    
-      //final battlefield conditions
+      //final conditions
 
     fprintf(fp,
             "\n\n==== FINAL BATTLEFIELD CONDITIONS ====\n\n");
@@ -504,18 +801,21 @@ int battle_calculations_B1(struct Battleship b,
 
         if (e[i].isDestroyed)
         {
-            fprintf(fp, "Status: DESTROYED\n");
+            fprintf(fp,
+                    "Status: DESTROYED\n");
         }
         else
         {
-            fprintf(fp, "Status: SURVIVED\n");
+            fprintf(fp,
+                    "Status: SURVIVED\n");
         }
     }
 
 
     fclose(fp);
 
-    printf("\nIteration %d results saved to part_1_B_simulation_1.txt\n",
+    printf("\nIteration %d results saved to "
+           "part_1_B_simulation_2.txt\n",
            iteration);
 
     return b_sunk;

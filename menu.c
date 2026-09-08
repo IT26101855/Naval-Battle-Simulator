@@ -62,7 +62,8 @@ void main_menu() {
 
                                              printf("                                                |Part 1-B|\n\n\n\n");
                                              printf("                                                1. Simulation 1\n\n");
-                                             printf("                                                2. Back\n\n\n");
+					     printf("                                                2. Simulation 2\n\n");
+                                             printf("                                                3. Back\n\n\n");
 
                                              printf("                                                Enter Your Choice: ");
 
@@ -80,7 +81,8 @@ void main_menu() {
                             break;
 
                         case 2:
-                            break;
+                            simulation_part_B_2();
+			    break;
 
                         default:
                             printf("\nInvalid choice!");
@@ -137,7 +139,8 @@ void main_menu() {
 
         printf("                                                1. Part 1-A Simulation\n\n");
         printf("                                                2. Part 1-B Simulation 1\n\n");
-        printf("                                                3. Back to Main Menu\n\n\n");
+	printf("                                                3. Part 1-B Simulation 2\n\n");
+        printf("                                                4. Back to Main Menu\n\n\n");
 
         printf("                                                Enter Your Choice: ");
 
@@ -225,7 +228,40 @@ void main_menu() {
            
               // go back to previous window
 
-            case 3:
+            
+	    case 3:
+		 system("clear");
+
+                fp = fopen("part_1_B_simulation_2.txt", "r");
+
+                printf("========================================\n");
+                printf("       PART 1-B SIMULATION 2\n");
+                printf("              STATISTICS\n");
+                printf("========================================\n\n");
+
+                if (fp == NULL)
+                {
+                    printf("No Part 1-B Simulation 2 results found!\n");
+                }
+                else
+                {
+                    while (fgets(line, sizeof(line), fp) != NULL)
+                    {
+                        printf("%s", line);
+                    }
+
+                    fclose(fp);
+                }
+
+                printf("\n\n========================================\n");
+                printf("Press Enter to return...");
+
+                while (getchar() != '\n');
+                getchar();
+
+                break;
+
+                case 4:
                 break;
 
 

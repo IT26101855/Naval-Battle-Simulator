@@ -319,13 +319,13 @@ void simulation_part_B_1(){
 
 
  
-    // Arrays for path points
+    //arrays for path points
 
     float pathX[k];
     float pathY[k];
 
 
-    // Generate k random points inside battlefield
+    //generate k random points inside battlefield
 
     printf("\n\n----- GENERATED PATH -----\n\n");
 
@@ -354,7 +354,7 @@ void simulation_part_B_1(){
 
 
  
-    // simulate each path point of the battleship
+       //simulate each path point of the battleship
 
     for (int i = 0; i < k; i++)
     {
@@ -410,7 +410,7 @@ void simulation_part_B_1(){
         bSunk = battle_calculations_B1(b, e, N, i+1);
 
 
-        // If B is destroyed, stop all remaining iterations
+        //if battleship is destroyed, stop all remaining iterations
 
         if (bSunk == 1)
         {
@@ -425,7 +425,7 @@ void simulation_part_B_1(){
 
 
         
-        // if B survived, continue to next point
+        //if battleship survived, continue to next point
 
         if (i < k - 1)
         {
@@ -450,6 +450,245 @@ void simulation_part_B_1(){
     getchar();
     getchar();
 
+    system("clear");
+}
+
+void simulation_part_B_2()
+{
+    struct Battleship b;
+
+    float D;
+    int N;
+
+    int k;
+    int t;
+
+    float thetaMin;
+
+
+    system("clear");
+
+    printf("====================================================\n");
+    printf("          PART 1-B - SIMULATION 2\n");
+    printf("====================================================\n\n");
+
+
+  
+      //battleship input 
+
+
+    printf("Enter Battleship Type: ");
+    scanf(" %c", &b.type);
+
+    printf("Enter Battleship Maximum Velocity: ");
+    scanf("%f", &b.maxVelocity);
+
+
+ 
+      //battlefield
+
+    battlefield(&D, &N);
+
+
+      //generate escort ships
+
+    struct Escortship e[N];
+
+    for (int i = 0; i < N; i++)
+    {
+        e[i].id = i + 1;
+
+        e[i].x =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].y =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].isDestroyed = 0;
+
+
+        int typeNumber =
+            rand() % 5;
+
+
+        switch (typeNumber)
+        {
+            case 0:
+                e[i].type = 'A';
+                e[i].minVelocity = 10;
+                e[i].maxVelocity = 20;
+                e[i].minAngle = 10;
+                e[i].maxAngle = 30;
+                break;
+
+            case 1:
+                e[i].type = 'B';
+                e[i].minVelocity = 15;
+                e[i].maxVelocity = 25;
+                e[i].minAngle = 15;
+                e[i].maxAngle = 35;
+                break;
+
+            case 2:
+                e[i].type = 'C';
+                e[i].minVelocity = 20;
+                e[i].maxVelocity = 30;
+                e[i].minAngle = 20;
+                e[i].maxAngle = 40;
+                break;
+
+            case 3:
+                e[i].type = 'D';
+                e[i].minVelocity = 25;
+                e[i].maxVelocity = 35;
+                e[i].minAngle = 25;
+                e[i].maxAngle = 45;
+                break;
+
+            case 4:
+                e[i].type = 'E';
+                e[i].minVelocity = 30;
+                e[i].maxVelocity = 40;
+                e[i].minAngle = 30;
+                e[i].maxAngle = 50;
+                break;
+        }
+    }
+
+
+   
+       //get input k value
+       
+
+    do
+    {
+        printf("\nEnter number of path points k: ");
+        scanf("%d", &k);
+
+        if (k <= 0)
+        {
+            printf("k must be greater than 0!\n");
+        }
+
+    } while (k <= 0);
+
+
+   
+      //get input t value  (t < k)
+
+    do
+    {
+        printf("Enter t (number of normal-gun iterations, t < k): ");
+        scanf("%d", &t);
+
+        if (t <= 0 || t >= k)
+        {
+            printf("Invalid t! It must satisfy 0 < t < k.\n");
+        }
+
+    } while (t <= 0 || t >= k);
+
+
+    /* 
+       THETA MIN INPUT
+       0 < thetaMin < 30
+                          */
+
+    do
+    {
+        printf("Enter thetaMin (0 < thetaMin < 30): ");
+        scanf("%f", &thetaMin);
+
+        if (thetaMin <= 0 || thetaMin >= 30)
+        {
+            printf("Invalid thetaMin! "
+                   "It must be between 0 and 30 degrees.\n");
+        }
+
+    } while (thetaMin <= 0 || thetaMin >= 30);
+
+     //generate path points
+
+    float pathX[k];
+    float pathY[k];
+
+    for (int i = 0; i < k; i++)
+    {
+        pathX[i] =
+            ((float)rand() / RAND_MAX) * D;
+
+        pathY[i] =
+            ((float)rand() / RAND_MAX) * D;
+    }
+
+
+ 
+      //run the simulaton
+
+    for (int i = 0; i < k; i++)
+    {
+        b.x = pathX[i];
+        b.y = pathY[i];
+
+
+        int jammed;
+
+        if (i < t)
+        {
+            jammed = 0;
+        }
+        else
+        {
+            jammed = 1;
+        }
+
+
+        printf("\n========================================\n");
+        printf("Iteration %d / %d\n", i + 1, k);
+        printf("B Position: (%.2f, %.2f)\n",b.x,b.y);
+
+
+        if (jammed)
+        {
+            printf("B Gun Status: JAMMED\n");
+            printf("Allowed Angle: %.2f - 90 degrees\n",thetaMin);
+        }
+        else
+        {
+            printf("B Gun Status: NORMAL\n");
+            printf("Allowed Angle: 0 - 90 degrees\n");
+        }
+
+
+        printf("========================================\n");
+
+
+        int bSunk = battle_calculations_B2(b,e,N,i + 1,jammed,thetaMin);
+
+
+        if (bSunk)
+        {
+            printf("\nBattleship was destroyed!\n");
+            printf("Simulation 2 stopped at iteration %d.\n",
+                   i + 1);
+
+            break;
+        }
+    }
+
+
+    printf("\n====================================================\n");
+    printf("       PART 1-B SIMULATION 2 COMPLETED\n");
+    printf("====================================================\n");
+
+    printf("\nResults saved to:\n");
+    printf("part_1_B_simulation_2.txt\n");
+
+    printf("\nPress Enter to return...");
+
+    while (getchar() != '\n');
+    getchar();
+    getchar();
     system("clear");
 }
 

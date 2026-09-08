@@ -25,5 +25,6 @@ struct Escortship
 void part_1_A();
 
 void simulation_part_B_1();
+void simulation_part_B_2();
 
 #endif
