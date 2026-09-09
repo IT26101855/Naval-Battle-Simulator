@@ -40,7 +40,8 @@ void main_menu() {
                     printf("                                                  2. Part 1-B\n\n");
                     printf("                                                  3. Part 1-C\n\n");
 		    printf("                                                  4. Part 2-A\n\n");
-                    printf("                                                  5. Back to Main Menu\n\n\n");
+                    printf("                                                  5. Part 2-B\n\n");
+                    printf("                                                  6. Back to Main Menu\n\n\n");
 
                     printf("                                                Enter Your Choice: ");
 
@@ -159,19 +160,28 @@ void main_menu() {
                         }
 
                         //part 2 A
-			case 4:
-			    system("clear");
-			    part_2_A();
+                        case 4:
+                            system("clear");
+                            part_2_A();
                             break;
 
-                        default:
+                        //part 2 B
+                        case 5:
+                            system("clear");
+                            part_2_B();
+                            break;
+
+			case 6:
+                           break;
+			
+			default:
                             printf("\nInvalid choice!");
                             while (getchar() != '\n');
                             getchar();
                             break;
                     }
 
-                } while (simChoice != 4);
+                } while (simChoice != 6);
 
                 break;
             }
@@ -185,6 +195,7 @@ void main_menu() {
                 printf(" 2. Mode 2 (Part 1-B): Path-based Navigation over 'k' points and Battleship gun jamming\n");
                 printf(" 3. Mode 3 (Part 1-C): Part 1 A & B Simulations with impact power\n");
 		printf(" 4. Mode 4 (Part 2-A): Part 1 A,B & C simulations with time between fire in gun\n");
+                printf(" 5. Mode 5 (Part 2-B): E ships fire continuously with type-specific TE values\n");
                 printf(" 5. Input battleship coordinates, max speed, and battlefield dimensions.\n");
                 printf(" 6. Escort ships will auto-generate based on probabilistic parameters.\n\n");
                 printf("=====================================================================\n\n");
@@ -211,7 +222,8 @@ void main_menu() {
                     printf("                                                3. Part 1-B Simulation 2\n\n");
                     printf("                                                4. Part 1-C Simulation\n\n");
 		    printf("                                                5. Part 2-A Simulation\n\n");
-                    printf("                                                6. Back to Main Menu\n\n\n");
+                    printf("                                                6. Part 2-B Simulation\n\n");
+                    printf("                                                7. Back to Main Menu\n\n\n");
 
                     printf("                                                Enter Your Choice: ");
 
@@ -445,16 +457,16 @@ void main_menu() {
                                    system("clear");
 
                       
-                                   printf("                                                    |Part 2-A Statistics|\n");
+                                   printf("                                                        |Part 2-A Statistics|\n\n\n");
                                    printf("                                                    1. Part 1-A\n");
                                    printf("                                                    2. Part 1-B Simulation 1\n");
                                    printf("                                                    3. Part 1-B Simulation 2\n");
-                                   printf("                                                    4. Part 1-C Part 1-A\n");
-                                   printf("                                                    5. Part 1-C Simulation 1\n");
-                                   printf("                                                    6. Part 1-C Simulation 2\n");
+                                   printf("                                                    4. Part 1-C (Part 1-A)\n");
+                                   printf("                                                    5. Part 1-C (Part 1-B Simulation 1)\n");
+                                   printf("                                                    6. Part 1-C (Part 1-B Simulation 2)\n");
                                    printf("                                                    7. Back\n\n\n\n");                                  
 
-                                   printf("                                                      Enter your choice: ");
+                                   printf("                                                          Enter your choice: ");
                                    scanf("%d", &p2Choice);
 
                                    char filename[100];
@@ -537,8 +549,89 @@ void main_menu() {
 }
 			
 			
-			// go back to main menu
+                        // part 2 B statistics
                         case 6:
+                        {
+                            int p2BChoice;
+
+                            do
+                            {
+                                system("clear");
+
+                                printf("                                                        |Part 2-B Statistics|\n\n\n");
+                                printf("                                                    1. Part 1-A\n");
+                                printf("                                                    2. Part 1-B Simulation 1\n");
+                                printf("                                                    3. Part 1-B Simulation 2\n");
+                                printf("                                                    4. Part 1-C (Part 1-A)\n");
+                                printf("                                                    5. Part 1-C (Part 1-B Simulation 1)\n");
+                                printf("                                                    6. Part 1-C (Part 1-B Simulation 2)\n");
+                                printf("                                                    7. Back\n\n\n");
+                                printf("                                                         Enter your choice: ");
+
+                                if (scanf("%d", &p2BChoice) != 1)
+                                {
+                                    while (getchar() != '\n');
+                                    continue;
+                                }
+
+                                char filename[100];
+
+                                if (p2BChoice == 1)
+                                    strcpy(filename, "part_2_B.txt");
+                                else if (p2BChoice == 2)
+                                    strcpy(filename, "part_2_B_B1.txt");
+                                else if (p2BChoice == 3)
+                                    strcpy(filename, "part_2_B_B2.txt");
+                                else if (p2BChoice == 4)
+                                    strcpy(filename, "part_2_B_C.txt");
+                                else if (p2BChoice == 5)
+                                    strcpy(filename, "part_2_B_C_B1.txt");
+                                else if (p2BChoice == 6)
+                                    strcpy(filename, "part_2_B_C_B2.txt");
+                                else if (p2BChoice == 7)
+                                    break;
+                                else
+                                {
+                                    printf("Invalid choice!\n");
+                                    while (getchar() != '\n');
+                                    getchar();
+                                    continue;
+                                }
+
+                                fp = fopen(filename, "r");
+
+                                if (fp == NULL)
+                                {
+                                    printf("\nNo saved results found.\n");
+                                    printf("Run this simulation first.\n");
+                                    printf("\nPress Enter to continue...");
+                                    getchar();
+                                    getchar();
+                                    continue;
+                                }
+
+                                system("clear");
+                                printf("\n========================================\n");
+                                printf("          PART 2-B STATISTICS\n");
+                                printf("========================================\n\n");
+
+                                while (fgets(line, sizeof(line), fp) != NULL)
+                                    printf("%s", line);
+
+                                fclose(fp);
+
+                                printf("\n========================================\n");
+                                printf("Press Enter to go back...");
+                                getchar();
+                                getchar();
+
+                            } while (p2BChoice != 7);
+
+                            break;
+                        }
+
+                        // go back to main menu
+                        case 7:
                             break;
 
                         default:
@@ -548,7 +641,7 @@ void main_menu() {
                             break;
                     }
 
-                } while (statChoice != 6);
+                } while (statChoice != 7);
 
                 break;
             }

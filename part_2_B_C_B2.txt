@@ -1,0 +1,102 @@
+====================================================
+          PART 2-B - PART 1-C B2
+====================================================
+
+Time Between B Firings: 2.00 seconds
+TE_A: 1.00 seconds
+TE_B: 2.00 seconds
+TE_C: 4.00 seconds
+TE_D: 8.00 seconds
+Jam Starts After Iteration: 2
+Minimum Angle: 20.00 degrees
+
+
+====================================================
+ITERATION 1
+B Position: (348.61, 390.32)
+B Attack Range: 825.69
+
+----- B ATTACK ORDER -----
+1. E Ship ID 5 (Type E_C)
+2. E Ship ID 3 (Type E_C)
+3. E Ship ID 2 (Type E_B)
+4. E Ship ID 1 (Type E_D)
+5. E Ship ID 4 (Type E_E)
+
+Time: 2.00 seconds
+B attacks E Ship ID 5
+E Ship ID 5 DESTROYED
+
+Time: 2.00 seconds
+E Ship ID 2 (Type E_B) fires at B
+Impact Power: 0.06
+Cumulative Impact: 0.06
+
+
+====================================================
+ITERATION 2
+B Position: (154.28, 543.14)
+B Attack Range: 825.69
+
+----- B ATTACK ORDER -----
+1. E Ship ID 3 (Type E_C)
+2. E Ship ID 2 (Type E_B)
+3. E Ship ID 1 (Type E_D)
+4. E Ship ID 4 (Type E_E)
+
+Time: 4.00 seconds
+B attacks E Ship ID 3
+E Ship ID 3 DESTROYED
+
+Time: 4.00 seconds
+E Ship ID 2 (Type E_B) fires at B
+Impact Power: 0.06
+Cumulative Impact: 0.12
+
+
+====================================================
+ITERATION 3
+B Position: (602.25, 196.79)
+B Attack Range: 54.36
+B Firing Angle: 88.11 degrees
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+Time: 6.00 seconds
+E Ship ID 2 (Type E_B) fires at B
+Impact Power: 0.06
+Cumulative Impact: 0.18
+
+
+====================================================
+ITERATION 4
+B Position: (247.39, 28.98)
+B Attack Range: 711.54
+B Firing Angle: 29.76 degrees
+
+----- B ATTACK ORDER -----
+1. E Ship ID 2 (Type E_B)
+2. E Ship ID 1 (Type E_D)
+3. E Ship ID 4 (Type E_E)
+
+Time: 8.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 8.00 seconds
+E Ship ID 4 (Type E_E) fires at B
+Impact Power: 0.04
+Cumulative Impact: 0.22
+
+
+================ FINAL RESULTS ================
+Battleship Status: SURVIVED
+Cumulative Impact on B: 0.22
+
+----- FINAL ESCORT SHIP STATUS -----
+E Ship ID 1: SURVIVED
+E Ship ID 2: DESTROYED
+E Ship ID 3: DESTROYED
+E Ship ID 4: SURVIVED
+E Ship ID 5: DESTROYED

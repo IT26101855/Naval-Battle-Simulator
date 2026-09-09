@@ -1560,19 +1560,7 @@ void part_2_A()
                     ) * D;
             }
 
-            part_2_A_battle_B(
-                b,
-                e,
-                N,
-                k,
-                pathX,
-                pathY,
-                TB,
-                1,
-                0,
-                0,
-                0
-            );
+            part_2_A_battle_B(b,e,N,k,pathX,pathY,TB,1,0,0,0);
         }
 
         // Run Part 1-B Simulation 2
@@ -1765,6 +1753,230 @@ void part_2_A()
         getchar();
         getchar();
 	system("clear");
+
+    } while (choice != 7);
+}
+
+
+// ==========================================================
+// PART 2-B
+// ==========================================================
+
+void part_2_B()
+{
+    int choice;
+
+    do
+    {
+        system("clear");
+        printf("                                                                |Part 2-B|\n\n\n");
+        printf("                                                         1. Part 1-A\n");
+        printf("                                                         2. Part 1-B Simulation 1\n");
+        printf("                                                         3. Part 1-B Simulation 2\n");
+        printf("                                                         4. Part 1-C Part 1-A\n");
+        printf("                                                         5. Part 1-C Simulation 1\n");
+        printf("                                                         6. Part 1-C Simulation 2\n");
+        printf("                                                         7. Back\n\n\n");
+        printf("                                                           Enter your choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 7)
+            break;
+
+        if (choice < 1 || choice > 6)
+        {
+            printf("Invalid choice!\n");
+            getchar();
+            getchar();
+            continue;
+        }
+	
+	system("clear");
+
+        struct Battleship b;
+        struct Escortship e[100];
+        int N;
+        float D;
+
+        printf("\nEnter Battleship Type(U M R S): ");
+        scanf(" %c", &b.type);
+        printf("Enter Battleship X position: ");
+        scanf("%f", &b.x);
+        printf("Enter Battleship Y position: ");
+        scanf("%f", &b.y);
+        printf("Enter Battleship Max Velocity: ");
+        scanf("%f", &b.maxVelocity);
+
+        battlefield(&D, &N);
+        if (N > 100)
+            N = 100;
+
+        srand(time(NULL));
+
+        for (int i = 0; i < N; i++)
+        {
+            e[i].id = i + 1;
+            e[i].type = "ABCDE"[rand() % 5];
+            e[i].x = (rand() / (float)RAND_MAX) * D;
+            e[i].y = (rand() / (float)RAND_MAX) * D;
+            e[i].isDestroyed = 0;
+            e[i].hasAttacked = 0;
+
+            switch (e[i].type)
+            {
+                case 'A':
+                    e[i].minVelocity = rand() % 11;
+                    e[i].maxVelocity = b.maxVelocity * 1.2f;
+                    e[i].minAngle = rand() % 71;
+                    e[i].maxAngle = e[i].minAngle + 20.0f;
+                    e[i].impactPower = 0.08f;
+                    break;
+                case 'B':
+                    e[i].minVelocity = rand() % 11;
+                    e[i].maxVelocity = b.maxVelocity * (0.8f +
+                        (rand() / (float)RAND_MAX) * 0.4f);
+                    e[i].minAngle = rand() % 61;
+                    e[i].maxAngle = e[i].minAngle + 30.0f;
+                    e[i].impactPower = 0.06f;
+                    break;
+                case 'C':
+                    e[i].minVelocity = rand() % 11;
+                    e[i].maxVelocity = b.maxVelocity * (0.8f +
+                        (rand() / (float)RAND_MAX) * 0.4f);
+                    e[i].minAngle = rand() % 66;
+                    e[i].maxAngle = e[i].minAngle + 25.0f;
+                    e[i].impactPower = 0.07f;
+                    break;
+                case 'D':
+                    e[i].minVelocity = rand() % 11;
+                    e[i].maxVelocity = b.maxVelocity * (0.8f +
+                        (rand() / (float)RAND_MAX) * 0.4f);
+                    e[i].minAngle = rand() % 61;
+                    e[i].maxAngle = e[i].minAngle + 30.0f;
+                    e[i].impactPower = 0.05f;
+                    break;
+                default:
+                    e[i].minVelocity = rand() % 11;
+                    e[i].maxVelocity = b.maxVelocity * (0.8f +
+                        (rand() / (float)RAND_MAX) * 0.4f);
+                    e[i].minAngle = rand() % 61;
+                    e[i].maxAngle = e[i].minAngle + 30.0f;
+                    e[i].impactPower = 0.04f;
+                    break;
+            }
+        }
+
+        float TB;
+        float TE_A, TE_B, TE_C, TE_D;
+
+        printf("\nEnter time between B gun firings TB: ");
+        scanf("%f", &TB);
+
+        if (TB <= 0)
+        {
+            printf("TB must be greater than 0.\n");
+            getchar();
+            getchar();
+            continue;
+        }
+
+        // Four constant TE values, one for each escort type interval.
+        do
+        {
+            printf("Enter TE for type A: ");
+            scanf("%f", &TE_A);
+            printf("Enter TE for type B: ");
+            scanf("%f", &TE_B);
+            printf("Enter TE for type C: ");
+            scanf("%f", &TE_C);
+            printf("Enter TE for type D: ");
+            scanf("%f", &TE_D);
+
+            if (TE_A <= 0 || TE_B <= 0 || TE_C <= 0 || TE_D <= 0 ||
+                TE_A == TE_B || TE_A == TE_C || TE_A == TE_D ||
+                TE_B == TE_C || TE_B == TE_D || TE_C == TE_D)
+            {
+                printf("TE values must be positive and different. Try again.\n\n");
+            }
+            else
+            {
+                break;
+            }
+        } while (1);
+
+        if (choice == 1)
+        {
+            part_2_B_battle(b,e,N,TB,TE_A,TE_B,TE_C,TE_D,0);
+        }
+        else if (choice == 2 || choice == 5)
+        {
+            int k;
+            printf("Enter number of movement points k: ");
+            scanf("%d", &k);
+
+            if (k <= 0)
+            {
+                printf("k must be greater than 0.\n");
+                getchar();
+                getchar();
+                continue;
+            }
+
+            float pathX[k], pathY[k];
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] = (rand() / (float)RAND_MAX) * D;
+                pathY[i] = (rand() / (float)RAND_MAX) * D;
+            }
+
+            part_2_B_battle_B(
+                b,e,N,k,pathX,pathY,TB,
+                TE_A,TE_B,TE_C,TE_D,
+                1,0,0,choice == 5
+            );
+        }
+        else if (choice == 3 || choice == 6)
+        {
+            int k, t;
+            float thetaMin;
+
+            printf("Enter number of movement points k: ");
+            scanf("%d", &k);
+            printf("Enter jam start iteration t (0 < t < k): ");
+            scanf("%d", &t);
+            printf("Enter minimum angle thetaMin (0 < thetaMin < 30): ");
+            scanf("%f", &thetaMin);
+
+            if (k <= 1 || t <= 0 || t >= k ||
+                thetaMin <= 0 || thetaMin >= 30)
+            {
+                printf("Invalid k, t or thetaMin.\n");
+                getchar();
+                getchar();
+                continue;
+            }
+
+            float pathX[k], pathY[k];
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] = (rand() / (float)RAND_MAX) * D;
+                pathY[i] = (rand() / (float)RAND_MAX) * D;
+            }
+
+            part_2_B_battle_B(
+                b,e,N,k,pathX,pathY,TB,
+                TE_A,TE_B,TE_C,TE_D,
+                2,t,thetaMin,choice == 6
+            );
+        }
+        else if (choice == 4)
+        {
+            part_2_B_battle(b,e,N,TB,TE_A,TE_B,TE_C,TE_D,1);
+        }
+
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
 
     } while (choice != 7);
 }

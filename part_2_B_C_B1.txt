@@ -1,0 +1,138 @@
+====================================================
+          PART 2-B - PART 1-C B1
+====================================================
+
+Time Between B Firings: 4.00 seconds
+TE_A: 2.00 seconds
+TE_B: 6.00 seconds
+TE_C: 1.00 seconds
+TE_D: 8.00 seconds
+
+
+====================================================
+ITERATION 1
+B Position: (710.79, 144.85)
+B Attack Range: 1722.73
+
+----- B ATTACK ORDER -----
+1. E Ship ID 6 (Type E_A)
+2. E Ship ID 2 (Type E_A)
+3. E Ship ID 1 (Type E_A)
+4. E Ship ID 7 (Type E_B)
+5. E Ship ID 5 (Type E_B)
+6. E Ship ID 4 (Type E_B)
+7. E Ship ID 3 (Type E_D)
+8. E Ship ID 9 (Type E_D)
+9. E Ship ID 10 (Type E_D)
+10. E Ship ID 8 (Type E_E)
+
+Time: 4.00 seconds
+B attacks E Ship ID 6
+E Ship ID 6 DESTROYED
+
+Time: 2.00 seconds
+E Ship ID 1 (Type E_A) fires at B
+Impact Power: 0.08
+Cumulative Impact: 0.08
+
+Time: 2.00 seconds
+E Ship ID 2 (Type E_A) fires at B
+Impact Power: 0.08
+Cumulative Impact: 0.16
+
+
+====================================================
+ITERATION 2
+B Position: (163.35, 1495.53)
+B Attack Range: 1722.73
+
+----- B ATTACK ORDER -----
+1. E Ship ID 1 (Type E_A)
+2. E Ship ID 2 (Type E_A)
+3. E Ship ID 4 (Type E_B)
+4. E Ship ID 5 (Type E_B)
+5. E Ship ID 7 (Type E_B)
+6. E Ship ID 10 (Type E_D)
+7. E Ship ID 3 (Type E_D)
+8. E Ship ID 9 (Type E_D)
+9. E Ship ID 8 (Type E_E)
+
+Time: 6.00 seconds
+B attacks E Ship ID 1
+E Ship ID 1 DESTROYED
+
+Time: 4.00 seconds
+E Ship ID 2 (Type E_A) fires at B
+Impact Power: 0.08
+Cumulative Impact: 0.24
+
+
+====================================================
+ITERATION 3
+B Position: (643.10, 1199.94)
+B Attack Range: 1722.73
+
+----- B ATTACK ORDER -----
+1. E Ship ID 2 (Type E_A)
+2. E Ship ID 4 (Type E_B)
+3. E Ship ID 5 (Type E_B)
+4. E Ship ID 7 (Type E_B)
+5. E Ship ID 10 (Type E_D)
+6. E Ship ID 3 (Type E_D)
+7. E Ship ID 9 (Type E_D)
+8. E Ship ID 8 (Type E_E)
+
+Time: 8.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 6.00 seconds
+E Ship ID 5 (Type E_B) fires at B
+Impact Power: 0.06
+Cumulative Impact: 0.30
+
+
+====================================================
+ITERATION 4
+B Position: (1263.73, 1043.50)
+B Attack Range: 1722.73
+
+----- B ATTACK ORDER -----
+1. E Ship ID 4 (Type E_B)
+2. E Ship ID 5 (Type E_B)
+3. E Ship ID 7 (Type E_B)
+4. E Ship ID 10 (Type E_D)
+5. E Ship ID 3 (Type E_D)
+6. E Ship ID 9 (Type E_D)
+7. E Ship ID 8 (Type E_E)
+
+Time: 10.00 seconds
+B attacks E Ship ID 4
+E Ship ID 4 DESTROYED
+
+Time: 8.00 seconds
+E Ship ID 8 (Type E_E) fires at B
+Impact Power: 0.04
+Cumulative Impact: 0.34
+
+Time: 8.00 seconds
+E Ship ID 10 (Type E_D) fires at B
+Impact Power: 0.05
+Cumulative Impact: 0.39
+
+
+================ FINAL RESULTS ================
+Battleship Status: SURVIVED
+Cumulative Impact on B: 0.39
+
+----- FINAL ESCORT SHIP STATUS -----
+E Ship ID 1: DESTROYED
+E Ship ID 2: DESTROYED
+E Ship ID 3: SURVIVED
+E Ship ID 4: DESTROYED
+E Ship ID 5: SURVIVED
+E Ship ID 6: DESTROYED
+E Ship ID 7: SURVIVED
+E Ship ID 8: SURVIVED
+E Ship ID 9: SURVIVED
+E Ship ID 10: SURVIVED

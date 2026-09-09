@@ -31,4 +31,13 @@ void part_2_A_battle_B(struct Battleship b,struct Escortship e[],int N,int k,
     int useImpactPower
 );
 
+// Part 2-B functions
+void part_2_B_battle(struct Battleship b, struct Escortship e[], int N,
+    float TB, float TE_A, float TE_B, float TE_C, float TE_D, int useImpactPower);
+
+void part_2_B_battle_B(struct Battleship b, struct Escortship e[], int N, int k,
+    float pathX[], float pathY[], float TB,
+    float TE_A, float TE_B, float TE_C, float TE_D,
+    int simulationType, int t, float thetaMin, int useImpactPower);
+
 #endif
