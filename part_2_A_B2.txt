@@ -1,0 +1,90 @@
+====================================================
+          PART 2-A - PART 1-B B2
+====================================================
+
+Time Between B Firings: 3.00 seconds
+Jam Starts After Iteration: 2
+Minimum Angle: 20.00 degrees
+
+
+====================================================
+ITERATION 1
+B Position: (368.72, 538.94)
+====================================================
+
+----- B ATTACK ORDER -----
+1. E Ship ID 2 (Type E_B)
+2. E Ship ID 7 (Type E_E)
+3. E Ship ID 3 (Type E_A)
+4. E Ship ID 5 (Type E_E)
+5. E Ship ID 6 (Type E_A)
+6. E Ship ID 1 (Type E_D)
+7. E Ship ID 4 (Type E_B)
+
+Time: 3.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 6.00 seconds
+B attacks E Ship ID 7
+E Ship ID 7 DESTROYED
+
+Time: 9.00 seconds
+B attacks E Ship ID 3
+E Ship ID 3 DESTROYED
+
+Time: 12.00 seconds
+B attacks E Ship ID 5
+E Ship ID 5 DESTROYED
+
+Time: 15.00 seconds
+B attacks E Ship ID 6
+E Ship ID 6 DESTROYED
+
+Time: 18.00 seconds
+B attacks E Ship ID 1
+E Ship ID 1 DESTROYED
+
+Time: 21.00 seconds
+B attacks E Ship ID 4
+E Ship ID 4 DESTROYED
+
+
+====================================================
+ITERATION 2
+B Position: (280.16, 624.07)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+====================================================
+ITERATION 3
+B Position: (198.32, 246.72)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+====================================================
+ITERATION 4
+B Position: (565.41, 643.32)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+================ FINAL RESULTS ================
+Battleship Status: SURVIVED
+
+----- FINAL ESCORT STATUS -----
+E Ship ID 1: DESTROYED
+E Ship ID 2: DESTROYED
+E Ship ID 3: DESTROYED
+E Ship ID 4: DESTROYED
+E Ship ID 5: DESTROYED
+E Ship ID 6: DESTROYED
+E Ship ID 7: DESTROYED

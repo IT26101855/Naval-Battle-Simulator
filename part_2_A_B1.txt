@@ -1,0 +1,67 @@
+====================================================
+          PART 2-A - PART 1-B B1
+====================================================
+
+Time Between B Firings: 5.00 seconds
+
+
+====================================================
+ITERATION 1
+B Position: (218.26, 512.93)
+====================================================
+
+----- B ATTACK ORDER -----
+1. E Ship ID 2 (Type E_B)
+2. E Ship ID 4 (Type E_B)
+3. E Ship ID 5 (Type E_E)
+4. E Ship ID 3 (Type E_A)
+5. E Ship ID 1 (Type E_D)
+
+Time: 5.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 10.00 seconds
+B attacks E Ship ID 4
+E Ship ID 4 DESTROYED
+
+Time: 15.00 seconds
+B attacks E Ship ID 5
+E Ship ID 5 DESTROYED
+
+Time: 20.00 seconds
+B attacks E Ship ID 3
+E Ship ID 3 DESTROYED
+
+Time: 25.00 seconds
+B attacks E Ship ID 1
+E Ship ID 1 DESTROYED
+
+
+====================================================
+ITERATION 2
+B Position: (839.11, 612.64)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+====================================================
+ITERATION 3
+B Position: (296.03, 637.55)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+================ FINAL RESULTS ================
+Battleship Status: SURVIVED
+
+----- FINAL ESCORT STATUS -----
+E Ship ID 1: DESTROYED
+E Ship ID 2: DESTROYED
+E Ship ID 3: DESTROYED
+E Ship ID 4: DESTROYED
+E Ship ID 5: DESTROYED

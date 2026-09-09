@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "menu.h"
 #include "sim.h"
 #include "combat.h"
@@ -11,7 +12,7 @@ void main_menu() {
     do {
         system("clear");
 
-        printf("                                                    |Main Menu|\n\n\n\n\n\n");
+        printf("                                                     |Main Menu|\n\n\n\n\n\n");
         printf("                                                1. Start Simulation\n\n");
         printf("                                                2. Instructions\n\n");
         printf("                                                3. Simulator Statistics\n\n");
@@ -34,11 +35,12 @@ void main_menu() {
                 do {
                     system("clear");
 
-                    printf("                                                    |Start Simulation|\n\n\n\n");
-                    printf("                                                1. Part 1-A\n\n");
-                    printf("                                                2. Part 1-B\n\n");
-                    printf("                                                3. Part 1-C\n\n");
-                    printf("                                                4. Back to Main Menu\n\n\n");
+                    printf("                                                  |Start Simulation|\n\n\n\n");
+                    printf("                                                  1. Part 1-A\n\n");
+                    printf("                                                  2. Part 1-B\n\n");
+                    printf("                                                  3. Part 1-C\n\n");
+		    printf("                                                  4. Part 2-A\n\n");
+                    printf("                                                  5. Back to Main Menu\n\n\n");
 
                     printf("                                                Enter Your Choice: ");
 
@@ -63,7 +65,7 @@ void main_menu() {
                             do {
                                 system("clear");
 
-                                printf("                                                |Part 1-B|\n\n\n\n");
+                                printf("                                                   |Part 1-B|\n\n\n\n");
                                 printf("                                                1. Simulation 1\n\n");
                                 printf("                                                2. Simulation 2\n\n");
                                 printf("                                                3. Back\n\n\n");
@@ -110,7 +112,7 @@ void main_menu() {
                             do {
                                 system("clear");
 
-                                printf("                                                |Part 1-C|\n\n\n\n");
+                                printf("                                                     |Part 1-C|\n\n\n\n");
                                 printf("                                                1. Part 1-A\n\n");
                                 printf("                                                2. Part 1-B - Simulation 1\n\n");
                                 printf("                                                3. Part 1-B - Simulation 2\n\n");
@@ -142,6 +144,7 @@ void main_menu() {
 
                                     case 4:
                                         break;
+				    	
 
                                     default:
                                         printf("\nInvalid choice!");
@@ -150,12 +153,15 @@ void main_menu() {
                                         break;
                                 }
 
-                            } while (cChoice != 4);
+                            } while (cChoice != 5);
 
                             break;
                         }
 
-                        case 4:
+                        //part 2 A
+			case 4:
+			    system("clear");
+			    part_2_A();
                             break;
 
                         default:
@@ -174,13 +180,14 @@ void main_menu() {
             case 2:
                 system("clear");
 
-                printf("                           -----------INSTRUCTIONS-------                             \n\n\n\n");
+                printf("                                                       |INSTRUCTIONS|                             \n\n\n\n");
                 printf(" 1. Mode 1 (Part 1-A): Standard 1-v-N Naval Battle Calculation.\n");
                 printf(" 2. Mode 2 (Part 1-B): Path-based Navigation over 'k' points and Battleship gun jamming\n");
                 printf(" 3. Mode 3 (Part 1-C): Part 1 A & B Simulations with impact power\n");
-                printf(" 4. Input battleship coordinates, max speed, and battlefield dimensions.\n");
-                printf(" 5. Escort ships will auto-generate based on probabilistic parameters.\n\n");
-                printf("=====================================================================\n");
+		printf(" 4. Mode 4 (Part 2-A): Part 1 A,B & C simulations with time between fire in gun\n");
+                printf(" 5. Input battleship coordinates, max speed, and battlefield dimensions.\n");
+                printf(" 6. Escort ships will auto-generate based on probabilistic parameters.\n\n");
+                printf("=====================================================================\n\n");
                 printf("\nPress Enter to return to Main Menu...");
 
                 while (getchar() != '\n');
@@ -198,12 +205,13 @@ void main_menu() {
                 do {
                     system("clear");
 
-                    printf("                                                    |Simulator Statistics|\n\n\n\n");
+                    printf("                                                 |Simulator Statistics|\n\n\n\n");
                     printf("                                                1. Part 1-A Simulation\n\n");
                     printf("                                                2. Part 1-B Simulation 1\n\n");
                     printf("                                                3. Part 1-B Simulation 2\n\n");
                     printf("                                                4. Part 1-C Simulation\n\n");
-                    printf("                                                5. Back to Main Menu\n\n\n");
+		    printf("                                                5. Part 2-A Simulation\n\n");
+                    printf("                                                6. Back to Main Menu\n\n\n");
 
                     printf("                                                Enter Your Choice: ");
 
@@ -311,7 +319,7 @@ void main_menu() {
                             do {
                                 system("clear");
 
-                                printf("                                                |Part 1-C Simulation|\n\n\n\n");
+                                printf("                                                 |Part 1-C Simulation|\n\n\n\n");
                                 printf("                                                1. Part 1-C - Part 1-A\n\n");
                                 printf("                                                2. Part 1-C - Simulation 1\n\n");
                                 printf("                                                3. Part 1-C - Simulation 2\n\n");
@@ -390,7 +398,7 @@ void main_menu() {
                                         fp = fopen("part_1_C_B_simulation_2.txt", "r");
 
                                         printf("========================================\n");
-                                        printf("       PART 1-C - (PART BSIMULATION 2)\n");
+                                        printf("       PART 1-C - (PART B SIMULATION 2)\n");
                                         printf("              STATISTICS\n");
                                         printf("========================================\n\n");
 
@@ -428,8 +436,109 @@ void main_menu() {
                             break;
                         }
 
-                        // go back to main menu
                         case 5:
+                         {
+                             int p2Choice;
+
+                               do
+                                 {
+                                   system("clear");
+
+                      
+                                   printf("                                                    |Part 2-A Statistics|\n");
+                                   printf("                                                    1. Part 1-A\n");
+                                   printf("                                                    2. Part 1-B Simulation 1\n");
+                                   printf("                                                    3. Part 1-B Simulation 2\n");
+                                   printf("                                                    4. Part 1-C Part 1-A\n");
+                                   printf("                                                    5. Part 1-C Simulation 1\n");
+                                   printf("                                                    6. Part 1-C Simulation 2\n");
+                                   printf("                                                    7. Back\n\n\n\n");                                  
+
+                                   printf("                                                      Enter your choice: ");
+                                   scanf("%d", &p2Choice);
+
+                                   char filename[100];
+
+                                    if (p2Choice == 1)
+                                      {
+                                        strcpy(filename, "part_2_A.txt");
+                                      }
+                                    else if (p2Choice == 2)
+                                      {
+                                        strcpy(filename, "part_2_A_B1.txt");
+                                      }
+                                    else if (p2Choice == 3)
+                                      {
+                                         strcpy(filename, "part_2_A_B2.txt");
+                                       }
+                                    else if (p2Choice == 4)
+                                       {
+                                         strcpy(filename, "part_2_A_C.txt");
+                                       }
+                                    else if (p2Choice == 5)
+                                       {
+                                    strcpy(filename, "part_2_A_C_B1.txt");
+                                       }
+        else if (p2Choice == 6)
+        {
+            strcpy(filename, "part_2_A_C_B2.txt");
+        }
+        else if (p2Choice == 7)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid choice!\n");
+            getchar();
+            getchar();
+            continue;
+        }
+
+        FILE *fp = fopen(filename, "r");
+
+        if (fp == NULL)
+        {
+            printf("\nNo saved results found.\n");
+            printf("Run this simulation first.\n");
+
+            printf("\nPress Enter to continue...");
+            getchar();
+            getchar();
+
+            continue;
+        }
+
+        system("clear");
+
+        printf("\n");
+        printf("========================================\n");
+        printf("          SAVED SIMULATION\n");
+        printf("========================================\n\n");
+
+        char line[300];
+
+        while (fgets(line, sizeof(line), fp) != NULL)
+        {
+            printf("%s", line);
+        }
+
+        fclose(fp);
+
+        printf("\n");
+        printf("========================================\n");
+        printf("Press Enter to go back...");
+        getchar();
+        getchar();
+
+    } while (p2Choice != 7);
+
+    break;
+}
+			
+			
+			// go back to main menu
+                        case 6:
                             break;
 
                         default:
@@ -439,7 +548,7 @@ void main_menu() {
                             break;
                     }
 
-                } while (statChoice != 5);
+                } while (statChoice != 6);
 
                 break;
             }

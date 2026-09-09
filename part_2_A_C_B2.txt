@@ -1,0 +1,69 @@
+====================================================
+          PART 2-A - PART 1-C B2
+====================================================
+
+Time Between B Firings: 4.00 seconds
+Jam Starts After Iteration: 1
+Minimum Angle: 20.00 degrees
+
+
+====================================================
+ITERATION 1
+B Position: (261.91, 615.52)
+====================================================
+
+----- B ATTACK ORDER -----
+1. E Ship ID 2 (Type E_B)
+2. E Ship ID 4 (Type E_B)
+3. E Ship ID 5 (Type E_E)
+
+Time: 4.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 8.00 seconds
+B attacks E Ship ID 4
+E Ship ID 4 DESTROYED
+
+Time: 12.00 seconds
+B attacks E Ship ID 5
+E Ship ID 5 DESTROYED
+
+
+====================================================
+ITERATION 2
+B Position: (1006.93, 735.17)
+====================================================
+
+----- B ATTACK ORDER -----
+1. E Ship ID 3 (Type E_A)
+2. E Ship ID 1 (Type E_D)
+
+Time: 16.00 seconds
+B attacks E Ship ID 3
+E Ship ID 3 DESTROYED
+
+Time: 20.00 seconds
+B attacks E Ship ID 1
+E Ship ID 1 DESTROYED
+
+
+====================================================
+ITERATION 3
+B Position: (355.24, 765.06)
+====================================================
+
+----- B ATTACK ORDER -----
+No E ships are inside B attack range.
+
+
+================ FINAL RESULTS ================
+Battleship Status: SURVIVED
+Cumulative Impact: 0.00
+
+----- FINAL ESCORT STATUS -----
+E Ship ID 1: DESTROYED
+E Ship ID 2: DESTROYED
+E Ship ID 3: DESTROYED
+E Ship ID 4: DESTROYED
+E Ship ID 5: DESTROYED

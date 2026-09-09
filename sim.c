@@ -1067,7 +1067,7 @@ void part_1_C_B2()
 
     struct Battleship b;
 
-    /* Battleship */
+     //battleship details
 
     printf("Enter Battleship Type: ");
     scanf(" %c", &b.type);
@@ -1311,4 +1311,460 @@ void part_1_C_B2()
     getchar();
 
     system("clear");
+}
+
+// PART 2-A
+
+void part_2_A()
+{
+    int choice;
+
+    do
+    {
+        printf("                                                                |Part 2-A|\n\n\n");
+        printf("                                                         1. Part 1-A\n");
+        printf("                                                         2. Part 1-B Simulation 1\n");
+        printf("                                                         3. Part 1-B Simulation 2\n");
+        printf("                                                         4. Part 1-C Part 1-A\n");
+        printf("                                                         5. Part 1-C Simulation 1\n");
+        printf("                                                         6. Part 1-C Simulation 2\n");
+        printf("                                                         7. Back\n\n\n\n\n\n");
+  
+
+        printf("                                                           Enter your choice: ");
+        scanf("%d", &choice);
+	system("clear");
+
+        if (choice == 7)
+        {
+            break;
+        }
+
+        if (choice < 1 || choice > 6)
+        {
+            printf("Invalid choice!\n");
+            continue;
+        }
+
+        struct Battleship b;
+        struct Escortship e[100];
+
+        int N;
+        float D;
+
+        // Get battleship details
+        printf("\nEnter Battleship Type(U M R S): ");
+        scanf(" %c", &b.type);
+
+        printf("Enter Battleship X position: ");
+        scanf("%f", &b.x);
+
+        printf("Enter Battleship Y position: ");
+        scanf("%f", &b.y);
+
+        printf("Enter Battleship Max Velocity: ");
+        scanf("%f", &b.maxVelocity);
+
+        // Create battlefield
+        battlefield(&D, &N);
+
+        if (N > 100)
+        {
+            N = 100;
+        }
+
+        // Create E ships
+        for (int i = 0; i < N; i++)
+        {
+            e[i].id = i + 1;
+
+            int typeNumber =
+                rand() % 5;
+
+            if (typeNumber == 0)
+            {
+                e[i].type = 'A';
+                e[i].minVelocity =
+                    (rand() % 11);
+                e[i].maxVelocity =
+                    b.maxVelocity * 1.2f;
+                e[i].minAngle =
+                    rand() % 71;
+                e[i].maxAngle =
+                    e[i].minAngle + 20;
+                e[i].impactPower = 0.08f;
+            }
+            else if (typeNumber == 1)
+            {
+                e[i].type = 'B';
+                e[i].minVelocity =
+                    (rand() % 11);
+                e[i].maxVelocity =
+                    b.maxVelocity *
+                    (
+                        0.8f +
+                        (
+                            rand() /
+                            (float)RAND_MAX
+                        ) * 0.4f
+                    );
+                e[i].minAngle =
+                    rand() % 61;
+                e[i].maxAngle =
+                    e[i].minAngle + 30;
+                e[i].impactPower = 0.06f;
+            }
+            else if (typeNumber == 2)
+            {
+                e[i].type = 'C';
+                e[i].minVelocity =
+                    (rand() % 11);
+                e[i].maxVelocity =
+                    b.maxVelocity *
+                    (
+                        0.8f +
+                        (
+                            rand() /
+                            (float)RAND_MAX
+                        ) * 0.4f
+                    );
+                e[i].minAngle =
+                    rand() % 66;
+                e[i].maxAngle =
+                    e[i].minAngle + 25;
+                e[i].impactPower = 0.07f;
+            }
+            else if (typeNumber == 3)
+            {
+                e[i].type = 'D';
+                e[i].minVelocity =
+                    (rand() % 11);
+                e[i].maxVelocity =
+                    b.maxVelocity *
+                    (
+                        0.8f +
+                        (
+                            rand() /
+                            (float)RAND_MAX
+                        ) * 0.4f
+                    );
+                e[i].minAngle =
+                    rand() % 61;
+                e[i].maxAngle =
+                    e[i].minAngle + 30;
+                e[i].impactPower = 0.05f;
+            }
+            else
+            {
+                e[i].type = 'E';
+                e[i].minVelocity =
+                    (rand() % 11);
+                e[i].maxVelocity =
+                    b.maxVelocity *
+                    (
+                        0.8f +
+                        (
+                            rand() /
+                            (float)RAND_MAX
+                        ) * 0.4f
+                    );
+                e[i].minAngle =
+                    rand() % 61;
+                e[i].maxAngle =
+                    e[i].minAngle + 30;
+                e[i].impactPower = 0.04f;
+            }
+
+            e[i].x =
+                (
+                    rand() /
+                    (float)RAND_MAX
+                ) * D;
+
+            e[i].y =
+                (
+                    rand() /
+                    (float)RAND_MAX
+                ) * D;
+
+            e[i].isDestroyed = 0;
+            e[i].hasAttacked = 0;
+        }
+
+        // Get time between B gun firings
+        float TB;
+
+        printf(
+            "\nEnter time between B gun firings: "
+        );
+
+        scanf("%f", &TB);
+
+        if (TB <= 0)
+        {
+            printf(
+                "Time must be greater than 0.\n"
+            );
+
+            continue;
+        }
+
+        // Run Part 1-A
+        if (choice == 1)
+        {
+            part_2_A_battle(
+                b,
+                e,
+                N,
+                TB,
+                0
+            );
+        }
+
+        // Run Part 1-B Simulation 1
+        else if (choice == 2)
+        {
+            int k;
+
+            printf(
+                "Enter number of movement points k: "
+            );
+
+            scanf("%d", &k);
+
+            if (k <= 0)
+            {
+                printf(
+                    "k must be greater than 0.\n"
+                );
+
+                continue;
+            }
+
+            float pathX[k];
+            float pathY[k];
+
+            // Create B movement path
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] =
+                    (
+                        rand() /
+                        (float)RAND_MAX
+                    ) * D;
+
+                pathY[i] =
+                    (
+                        rand() /
+                        (float)RAND_MAX
+                    ) * D;
+            }
+
+            part_2_A_battle_B(
+                b,
+                e,
+                N,
+                k,
+                pathX,
+                pathY,
+                TB,
+                1,
+                0,
+                0,
+                0
+            );
+        }
+
+        // Run Part 1-B Simulation 2
+        else if (choice == 3)
+        {
+            int k;
+            int t;
+            float thetaMin;
+
+            printf(
+                "Enter number of movement points k: "
+            );
+
+            scanf("%d", &k);
+
+            printf(
+                "Enter jam start iteration t (t<k): "
+            );
+
+            scanf("%d", &t);
+
+            printf(
+                "Enter minimum angle thetaMin (0 - 30): "
+            );
+
+            scanf("%f", &thetaMin);
+
+            if (k <= 1)
+            {
+                printf(
+                    "k must be greater than 1.\n"
+                );
+
+                continue;
+            }
+
+            if (t <= 0 || t >= k)
+            {
+                printf(
+                    "t must be between 0 and k.\n"
+                );
+
+                continue;
+            }
+
+            if (
+                thetaMin <= 0 ||
+                thetaMin >= 30
+            )
+            {
+                printf(
+                    "thetaMin must be between 0 and 30.\n"
+                );
+
+                continue;
+            }
+
+            float pathX[k];
+            float pathY[k];
+
+            // Create B movement path
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] = (rand() /(float)RAND_MAX) * D;
+
+                pathY[i] =(rand() /(float)RAND_MAX) * D;
+            }
+
+            part_2_A_battle_B(b,e,N,k,pathX,pathY,TB,2,t,thetaMin,0);
+        }
+
+        // Run Part 1-C Simulation A
+        else if (choice == 4)
+        {
+            part_2_A_battle(b,e,N,TB,1);
+        }
+
+        // Run Part 1-C Simulation 1
+        else if (choice == 5)
+        {
+            int k;
+
+            printf(
+                "Enter number of movement points k: "
+            );
+
+            scanf("%d", &k);
+
+            if (k <= 0)
+            {
+                printf(
+                    "k must be greater than 0.\n"
+                );
+
+                continue;
+            }
+
+            float pathX[k];
+            float pathY[k];
+
+            // Create B movement path
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] = (rand() / (float)RAND_MAX) * D;
+
+                pathY[i] = (rand() /(float)RAND_MAX) * D;
+            }
+
+            part_2_A_battle_B(b,e,N,k,pathX,pathY,TB,1,0,0,1);
+        }
+
+        // Run Part 1-C Simulation 2
+        else if (choice == 6)
+        {
+            int k;
+            int t;
+            float thetaMin;
+
+            printf(
+                "Enter number of movement points k: "
+            );
+
+            scanf("%d", &k);
+
+            printf(
+                "Enter jam start iteration t (t<k): "
+            );
+
+            scanf("%d", &t);
+
+            printf(
+                "Enter minimum angle thetaMin(0 - 30): "
+            );
+
+            scanf("%f", &thetaMin);
+
+            if (k <= 1)
+            {
+                printf(
+                    "k must be greater than 1.\n"
+                );
+
+                continue;
+            }
+
+            if (t <= 0 || t >= k)
+            {
+                printf(
+                    "t must be between 0 and k.\n"
+                );
+
+                continue;
+            }
+
+            if (
+                thetaMin <= 0 ||
+                thetaMin >= 30
+            )
+            {
+                printf(
+                    "thetaMin must be between 0 and 30.\n"
+                );
+
+                continue;
+            }
+
+            float pathX[k];
+            float pathY[k];
+
+            // Create B movement path
+            for (int i = 0; i < k; i++)
+            {
+                pathX[i] =
+                    (
+                        rand() /
+                        (float)RAND_MAX
+                    ) * D;
+
+                pathY[i] =
+                    (
+                        rand() /
+                        (float)RAND_MAX
+                    ) * D;
+            }
+
+            part_2_A_battle_B(b,e,N,k,pathX,pathY,TB,2,t,thetaMin,1);
+        }
+
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+	system("clear");
+
+    } while (choice != 7);
 }

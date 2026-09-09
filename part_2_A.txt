@@ -1,0 +1,66 @@
+====================================================
+             PART 2-A - PART 1-A
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship Type: U
+Battleship Position: (300.00, 200.00)
+Battleship Max Velocity: 130.00
+Total Escort Ships: 6
+Time Between B Firings: 4.00 seconds
+
+----- ESCORT SHIPS -----
+ID: 1 | Type: E_D | Position: (638.15, 138.29)
+ID: 2 | Type: E_B | Position: (334.18, 440.21)
+ID: 3 | Type: E_A | Position: (641.34, 445.00)
+ID: 4 | Type: E_B | Position: (170.02, 96.06)
+ID: 5 | Type: E_E | Position: (76.17, 699.25)
+ID: 6 | Type: E_A | Position: (428.85, 207.22)
+
+----- B ATTACK ORDER -----
+1. E Ship ID 6 (Type E_A)
+2. E Ship ID 4 (Type E_B)
+3. E Ship ID 2 (Type E_B)
+4. E Ship ID 1 (Type E_D)
+5. E Ship ID 3 (Type E_A)
+6. E Ship ID 5 (Type E_E)
+
+----- ATTACK RESULTS -----
+
+Time: 4.00 seconds
+B attacks E Ship ID 6
+E Ship ID 6 DESTROYED
+
+Time: 8.00 seconds
+B attacks E Ship ID 4
+E Ship ID 4 DESTROYED
+
+Time: 12.00 seconds
+B attacks E Ship ID 2
+E Ship ID 2 DESTROYED
+
+Time: 16.00 seconds
+B attacks E Ship ID 1
+E Ship ID 1 DESTROYED
+
+Time: 20.00 seconds
+B attacks E Ship ID 3
+E Ship ID 3 DESTROYED
+
+Time: 24.00 seconds
+B attacks E Ship ID 5
+E Ship ID 5 DESTROYED
+
+
+==== FINAL RESULTS ====
+Battleship Status: SURVIVED
+Total E Ships Destroyed: 6
+
+----- FINAL ESCORT SHIP STATUS -----
+E Ship ID 1: DESTROYED
+E Ship ID 2: DESTROYED
+E Ship ID 3: DESTROYED
+E Ship ID 4: DESTROYED
+E Ship ID 5: DESTROYED
+E Ship ID 6: DESTROYED

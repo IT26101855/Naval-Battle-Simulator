@@ -33,4 +33,6 @@ void part_1_C_A();
 void part_1_C_B1();
 void part_1_C_B2();
 
+void part_2_A();
+
 #endif

@@ -1735,3 +1735,762 @@ int battle_calculations_C_B2(struct Battleship b,struct Escortship e[],int N, in
     return b_sunk;
 }
 
+// ==========================================================
+// PART 2-A
+// ==========================================================
+
+// Get distance between B and an E ship
+float p2a_distance(struct Battleship b, struct Escortship e)
+{
+    return sqrt(
+        pow(b.x - e.x, 2) +
+        pow(b.y - e.y, 2)
+    );
+}
+
+// Get the maximum attack range of B
+float p2a_b_range(struct Battleship b)
+{
+    return (b.maxVelocity * b.maxVelocity) / GRAVITY;
+}
+
+// Sort E ships using our custom attack strategy
+void p2a_create_attack_order(
+    struct Battleship b,
+    struct Escortship e[],
+    int N,
+    int order[],
+    int useImpactPower
+)
+{
+    int count = 0;
+
+    // Find E ships that are inside B range
+    for (int i = 0; i < N; i++)
+    {
+        if (!e[i].isDestroyed)
+        {
+            float dist = p2a_distance(b, e[i]);
+            float range = p2a_b_range(b);
+
+            if (dist <= range)
+            {
+                order[count] = i;
+                count++;
+            }
+        }
+    }
+
+    // Sort the attack order
+    for (int i = 0; i < count - 1; i++)
+    {
+        for (int j = i + 1; j < count; j++)
+        {
+            int first = order[i];
+            int second = order[j];
+
+            float d1 = p2a_distance(b, e[first]);
+            float d2 = p2a_distance(b, e[second]);
+
+            int swapNeeded = 0;
+
+            if (useImpactPower)
+            {
+                // Higher impact ship gets priority
+                if (e[first].impactPower < e[second].impactPower)
+                {
+                    swapNeeded = 1;
+                }
+                else if (
+                    e[first].impactPower ==
+                    e[second].impactPower
+                )
+                {
+                    // If same impact, attack closer ship first
+                    if (d1 > d2)
+                    {
+                        swapNeeded = 1;
+                    }
+                }
+            }
+            else
+            {
+                // Attack closer ship first
+                if (d1 > d2)
+                {
+                    swapNeeded = 1;
+                }
+            }
+
+            if (swapNeeded)
+            {
+                int temp = order[i];
+                order[i] = order[j];
+                order[j] = temp;
+            }
+        }
+    }
+}
+
+
+// ==========================================================
+// PART 2-A - PART 1-A / PART 1-C A
+// ==========================================================
+
+void part_2_A_battle(
+    struct Battleship b,
+    struct Escortship e[],
+    int N,
+    float TB,
+    int useImpactPower
+)
+{
+    FILE *fp;
+
+    if (useImpactPower)
+    {
+        fp = fopen("part_2_A_C.txt", "w");
+    }
+    else
+    {
+        fp = fopen("part_2_A.txt", "w");
+    }
+
+    if (fp == NULL)
+    {
+        printf("Error opening Part 2-A result file!\n");
+        return;
+    }
+
+    int order[N];
+    int attackCount = 0;
+    int b_sunk = 0;
+    int hit_e_count = 0;
+
+    float cumulativeImpact = 0.0f;
+    float currentTime = 0.0f;
+
+    // Create attack order
+    p2a_create_attack_order(
+        b,
+        e,
+        N,
+        order,
+        useImpactPower
+    );
+
+    for (int i = 0; i < N; i++)
+    {
+        if (!e[i].isDestroyed)
+        {
+            float dist = p2a_distance(b, e[i]);
+
+            if (dist <= p2a_b_range(b))
+            {
+                attackCount++;
+            }
+        }
+    }
+
+    // Save initial conditions
+    fprintf(fp, "====================================================\n");
+
+    if (useImpactPower)
+    {
+        fprintf(fp, "             PART 2-A - PART 1-C A\n");
+    }
+    else
+    {
+        fprintf(fp, "             PART 2-A - PART 1-A\n");
+    }
+
+    fprintf(fp, "====================================================\n\n");
+
+    fprintf(fp, "=== INITIAL BATTLEFIELD CONDITIONS ===\n\n");
+
+    fprintf(
+        fp,
+        "Battleship Type: %c\n",
+        b.type
+    );
+
+    fprintf(
+        fp,
+        "Battleship Position: (%.2f, %.2f)\n",
+        b.x,
+        b.y
+    );
+
+    fprintf(
+        fp,
+        "Battleship Max Velocity: %.2f\n",
+        b.maxVelocity
+    );
+
+    fprintf(
+        fp,
+        "Total Escort Ships: %d\n",
+        N
+    );
+
+    fprintf(
+        fp,
+        "Time Between B Firings: %.2f seconds\n\n",
+        TB
+    );
+
+    fprintf(fp, "----- ESCORT SHIPS -----\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        fprintf(
+            fp,
+            "ID: %d | Type: E_%c | Position: (%.2f, %.2f)\n",
+            e[i].id,
+            e[i].type,
+            e[i].x,
+            e[i].y
+        );
+    }
+
+    fprintf(fp, "\n----- B ATTACK ORDER -----\n");
+
+    if (attackCount == 0)
+    {
+        fprintf(
+            fp,
+            "No E ships are inside B attack range.\n"
+        );
+    }
+
+    for (int i = 0; i < attackCount; i++)
+    {
+        int index = order[i];
+
+        fprintf(
+            fp,
+            "%d. E Ship ID %d (Type E_%c)\n",
+            i + 1,
+            e[index].id,
+            e[index].type
+        );
+    }
+
+    fprintf(fp, "\n----- ATTACK RESULTS -----\n");
+
+    // B attacks E ships in the selected order
+    for (int i = 0; i < attackCount; i++)
+    {
+        int index = order[i];
+
+        if (e[index].isDestroyed)
+        {
+            continue;
+        }
+
+        currentTime += TB;
+
+        fprintf(
+            fp,
+            "\nTime: %.2f seconds\n",
+            currentTime
+        );
+
+        fprintf(
+            fp,
+            "B attacks E Ship ID %d\n",
+            e[index].id
+        );
+
+        // B destroys E with one attack
+        e[index].isDestroyed = 1;
+        hit_e_count++;
+
+        fprintf(
+            fp,
+            "E Ship ID %d DESTROYED\n",
+            e[index].id
+        );
+    }
+
+    // E ships attack B
+    for (int i = 0; i < N; i++)
+    {
+        if (e[i].isDestroyed)
+        {
+            continue;
+        }
+
+        float dist = p2a_distance(b, e[i]);
+
+        float R_E_min =
+            (
+                e[i].minVelocity *
+                e[i].minVelocity *
+                sin(
+                    2 *
+                    e[i].minAngle *
+                    M_PI / 180.0
+                )
+            ) / GRAVITY;
+
+        float R_E_max =
+            (
+                e[i].maxVelocity *
+                e[i].maxVelocity *
+                sin(
+                    2 *
+                    e[i].maxAngle *
+                    M_PI / 180.0
+                )
+            ) / GRAVITY;
+
+        if (
+            dist >= R_E_min &&
+            dist <= R_E_max
+        )
+        {
+            if (useImpactPower)
+            {
+                cumulativeImpact += e[i].impactPower;
+
+                fprintf(
+                    fp,
+                    "E Ship ID %d hits B\n",
+                    e[i].id
+                );
+
+                fprintf(
+                    fp,
+                    "Impact Power: %.2f\n",
+                    e[i].impactPower
+                );
+
+                fprintf(
+                    fp,
+                    "Cumulative Impact: %.2f\n",
+                    cumulativeImpact
+                );
+
+                if (cumulativeImpact >= 1.0f)
+                {
+                    b_sunk = 1;
+
+                    fprintf(
+                        fp,
+                        "BATTLESHIP DESTROYED\n"
+                    );
+
+                    break;
+                }
+            }
+            else
+            {
+                b_sunk = 1;
+
+                fprintf(
+                    fp,
+                    "E Ship ID %d hits B\n",
+                    e[i].id
+                );
+
+                fprintf(
+                    fp,
+                    "BATTLESHIP DESTROYED\n"
+                );
+
+                break;
+            }
+        }
+    }
+
+    // Save final result
+    fprintf(
+        fp,
+        "\n\n==== FINAL RESULTS ====\n"
+    );
+
+    if (b_sunk)
+    {
+        fprintf(
+            fp,
+            "Battleship Status: DESTROYED\n"
+        );
+    }
+    else
+    {
+        fprintf(
+            fp,
+            "Battleship Status: SURVIVED\n"
+        );
+    }
+
+    fprintf(
+        fp,
+        "Total E Ships Destroyed: %d\n",
+        hit_e_count
+    );
+
+    if (useImpactPower)
+    {
+        fprintf(
+            fp,
+            "Cumulative Impact on B: %.2f\n",
+            cumulativeImpact
+        );
+    }
+
+    fprintf(
+        fp,
+        "\n----- FINAL ESCORT SHIP STATUS -----\n"
+    );
+
+    for (int i = 0; i < N; i++)
+    {
+        fprintf(
+            fp,
+            "E Ship ID %d: %s\n",
+            e[i].id,
+            e[i].isDestroyed ?
+            "DESTROYED" :
+            "SURVIVED"
+        );
+    }
+
+    fclose(fp);
+
+    if (useImpactPower)
+    {
+        printf(
+            "\nPart 2-A C results saved to "
+            "'part_2_A_C.txt'\n"
+        );
+    }
+    else
+    {
+        printf(
+            "\nPart 2-A results saved to "
+            "'part_2_A.txt'\n"
+        );
+    }
+}
+
+
+// ==========================================================
+// PART 2-A - PART 1-B
+// ==========================================================
+
+void part_2_A_battle_B(
+    struct Battleship b,
+    struct Escortship e[],
+    int N,
+    int k,
+    float pathX[],
+    float pathY[],
+    float TB,
+    int simulationType,
+    int t,
+    float thetaMin,
+    int useImpactPower
+)
+{
+    FILE *fp;
+
+    if (useImpactPower)
+    {
+        if (simulationType == 1)
+        {
+            fp = fopen(
+                "part_2_A_C_B1.txt",
+                "w"
+            );
+        }
+        else
+        {
+            fp = fopen(
+                "part_2_A_C_B2.txt",
+                "w"
+            );
+        }
+    }
+    else
+    {
+        if (simulationType == 1)
+        {
+            fp = fopen(
+                "part_2_A_B1.txt",
+                "w"
+            );
+        }
+        else
+        {
+            fp = fopen(
+                "part_2_A_B2.txt",
+                "w"
+            );
+        }
+    }
+
+    if (fp == NULL)
+    {
+        printf("Error opening Part 2-A file!\n");
+        return;
+    }
+
+    int b_sunk = 0;
+
+    float cumulativeImpact = 0.0f;
+    float currentTime = 0.0f;
+
+    fprintf(
+        fp,
+        "====================================================\n"
+    );
+
+    if (useImpactPower)
+    {
+        if (simulationType == 1)
+        {
+            fprintf(
+                fp,
+                "          PART 2-A - PART 1-C B1\n"
+            );
+        }
+        else
+        {
+            fprintf(
+                fp,
+                "          PART 2-A - PART 1-C B2\n"
+            );
+        }
+    }
+    else
+    {
+        if (simulationType == 1)
+        {
+            fprintf(
+                fp,
+                "          PART 2-A - PART 1-B B1\n"
+            );
+        }
+        else
+        {
+            fprintf(
+                fp,
+                "          PART 2-A - PART 1-B B2\n"
+            );
+        }
+    }
+
+    fprintf(
+        fp,
+        "====================================================\n\n"
+    );
+
+    fprintf(
+        fp,
+        "Time Between B Firings: %.2f seconds\n",
+        TB
+    );
+
+    if (simulationType == 2)
+    {
+        fprintf(
+            fp,
+            "Jam Starts After Iteration: %d\n",
+            t
+        );
+
+        fprintf(
+            fp,
+            "Minimum Angle: %.2f degrees\n",
+            thetaMin
+        );
+    }
+
+    // Run each B movement point
+    for (int iteration = 0; iteration < k; iteration++)
+    {
+        b.x = pathX[iteration];
+        b.y = pathY[iteration];
+
+        fprintf(
+            fp,
+            "\n\n====================================================\n"
+        );
+
+        fprintf(
+            fp,
+            "ITERATION %d\n",
+            iteration + 1
+        );
+
+        fprintf(
+            fp,
+            "B Position: (%.2f, %.2f)\n",
+            b.x,
+            b.y
+        );
+
+        fprintf(
+            fp,
+            "====================================================\n"
+        );
+
+        int order[N];
+        int attackCount = 0;
+
+        // Find attack order for this position
+        p2a_create_attack_order(b,e,N,order,useImpactPower);
+
+        for (int i = 0; i < N; i++)
+        {
+            if (!e[i].isDestroyed)
+            {
+                float dist = p2a_distance(b, e[i]);
+
+                float range;
+
+                if (simulationType == 2 &&
+                    iteration + 1 > t)
+                {
+                    float angle = thetaMin + (rand() / (float)RAND_MAX) * (90.0f - thetaMin);
+
+                    range = (b.maxVelocity * b.maxVelocity * sin(2 * angle * M_PI / 180.0)) / GRAVITY;
+                }
+                else
+                {
+                    range = p2a_b_range(b);
+                }
+
+                if (dist <= range)
+                {
+                    attackCount++;
+                }
+            }
+        }
+
+        fprintf(fp,"\n----- B ATTACK ORDER -----\n");
+
+        for (int i = 0; i < attackCount; i++)
+        {
+            int index = order[i];
+
+            fprintf(fp,"%d. E Ship ID %d (Type E_%c)\n",i + 1,e[index].id, e[index].type);
+        }
+
+        if (attackCount == 0)
+        {
+            fprintf(fp,"No E ships are inside B attack range.\n");
+        }
+
+        // B attacks in the selected order
+        for (int i = 0; i < attackCount; i++)
+        {
+            int index = order[i];
+
+            if (e[index].isDestroyed)
+            {
+                continue;
+            }
+
+            currentTime += TB;
+
+            fprintf(fp,"\nTime: %.2f seconds\n",currentTime);
+
+            fprintf(fp,"B attacks E Ship ID %d\n",e[index].id);
+
+            e[index].isDestroyed = 1;
+
+            fprintf(fp,"E Ship ID %d DESTROYED\n",e[index].id);
+        }
+
+        // Remaining E ships can attack B
+        for (int i = 0; i < N; i++)
+        {
+            if (e[i].isDestroyed)
+            {
+                continue;
+            }
+
+            if (e[i].hasAttacked)
+            {
+                continue;
+            }
+
+            float dist = p2a_distance(b, e[i]);
+
+            float R_E_min = (e[i].minVelocity * e[i].minVelocity * sin(2 * e[i].minAngle * M_PI / 180.0)) / GRAVITY;
+
+            float R_E_max = (e[i].maxVelocity * e[i].maxVelocity * sin( 2 * e[i].maxAngle * M_PI / 180.0)) / GRAVITY;
+
+            if (dist >= R_E_min &&
+                dist <= R_E_max
+            )
+            {
+                e[i].hasAttacked = 1;
+
+                fprintf(fp,"E Ship ID %d attacks B\n",e[i].id);
+
+                if (useImpactPower)
+                {
+                    cumulativeImpact +=
+                        e[i].impactPower;
+
+                    fprintf(fp,"Impact Power: %.2f\n", e[i].impactPower);
+
+                    fprintf(fp,"Cumulative Impact: %.2f\n",cumulativeImpact);
+
+                    if (cumulativeImpact >= 1.0f)
+                    {
+                        b_sunk = 1;
+
+                        fprintf(fp,"BATTLESHIP DESTROYED\n");
+
+                        break;
+                    }
+                }
+                else
+                {
+                    b_sunk = 1;
+
+                    fprintf(fp,"BATTLESHIP DESTROYED\n");
+
+                    break;
+                }
+            }
+        }
+
+        if (b_sunk)
+        {
+            break;
+        }
+    }
+
+    fprintf(fp,"\n\n================ FINAL RESULTS ================\n");
+
+    if (b_sunk)
+    {
+        fprintf(fp,"Battleship Status: DESTROYED\n");
+    }
+    else
+    {
+        fprintf(fp,"Battleship Status: SURVIVED\n");
+    }
+
+    if (useImpactPower)
+    {
+        fprintf(fp,"Cumulative Impact: %.2f\n",cumulativeImpact);
+    }
+
+    fprintf(fp,"\n----- FINAL ESCORT STATUS -----\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        fprintf(fp,"E Ship ID %d: %s\n",e[i].id,e[i].isDestroyed ? "DESTROYED" :"SURVIVED");
+    }
+
+    fclose(fp);
+
+    printf("\nPart 2-A simulation results saved.\n");
+}
