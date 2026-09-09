@@ -468,3 +468,127 @@ Escort Ship ID: 8
 Type: E_D
 Position: (39.13, 378.62)
 Status: SURVIVED
+
+
+                             ========================================
+                                             SIMULATION 5
+                             ========================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (300.00, 700.00)
+Max Velocity: 130.00
+
+Total Escort Ships (N): 7
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (518.90, 1113.78)
+Minimum Velocity: 2.52
+Maximum Velocity: 43.07
+Minimum Angle: 57.71 degrees
+Maximum Angle: 82.71 degrees
+
+Escort Ship ID: 2
+Type: E_A
+Position: (515.78, 1156.99)
+Minimum Velocity: 9.69
+Maximum Velocity: 156.00
+Minimum Angle: 41.08 degrees
+Maximum Angle: 61.08 degrees
+
+Escort Ship ID: 3
+Type: E_A
+Position: (2130.33, 1096.59)
+Minimum Velocity: 6.94
+Maximum Velocity: 156.00
+Minimum Angle: 1.04 degrees
+Maximum Angle: 21.04 degrees
+
+Escort Ship ID: 4
+Type: E_D
+Position: (241.65, 813.26)
+Minimum Velocity: 9.54
+Maximum Velocity: 63.84
+Minimum Angle: 16.68 degrees
+Maximum Angle: 66.68 degrees
+
+Escort Ship ID: 5
+Type: E_A
+Position: (1612.27, 2128.70)
+Minimum Velocity: 7.16
+Maximum Velocity: 156.00
+Minimum Angle: 4.97 degrees
+Maximum Angle: 24.97 degrees
+
+Escort Ship ID: 6
+Type: E_A
+Position: (1520.54, 1855.32)
+Minimum Velocity: 2.09
+Maximum Velocity: 156.00
+Minimum Angle: 65.95 degrees
+Maximum Angle: 85.95 degrees
+
+Escort Ship ID: 7
+Type: E_B
+Position: (986.61, 212.85)
+Minimum Velocity: 7.80
+Maximum Velocity: 71.81
+Minimum Angle: 19.86 degrees
+Maximum Angle: 49.86 degrees
+
+
+==== SIMULATION RESULTS ====
+
+STATUS: Battleship SANK!
+Sunk by Escort Ship ID: 2
+Battle Duration: 27.84 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (300.00, 700.00)
+Max Velocity: 130.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (518.90, 1113.78)
+Status: DESTROYED
+
+Escort Ship ID: 2
+Type: E_A
+Position: (515.78, 1156.99)
+Status: DESTROYED
+
+Escort Ship ID: 3
+Type: E_A
+Position: (2130.33, 1096.59)
+Status: SURVIVED
+
+Escort Ship ID: 4
+Type: E_D
+Position: (241.65, 813.26)
+Status: SURVIVED
+
+Escort Ship ID: 5
+Type: E_A
+Position: (1612.27, 2128.70)
+Status: SURVIVED
+
+Escort Ship ID: 6
+Type: E_A
+Position: (1520.54, 1855.32)
+Status: SURVIVED
+
+Escort Ship ID: 7
+Type: E_B
+Position: (986.61, 212.85)
+Status: SURVIVED

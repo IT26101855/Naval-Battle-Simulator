@@ -1,0 +1,881 @@
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 1
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (1832.39, 1271.42)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: ACTIVE
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 1
+Distance: 506.03
+B Firing Angle: 9.79 degrees
+B Attack Range: 492.06
+E Attack Range: 26.21 - 90.35
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 600.02
+B Firing Angle: 89.90 degrees
+B Attack Range: 4.96
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1191.79
+B Firing Angle: 19.64 degrees
+B Attack Range: 929.46
+E Attack Range: 79.45 - 160.62
+
+----------------------------------------
+Escort Ship ID: 4
+Distance: 790.62
+B Firing Angle: 46.16 degrees
+B Attack Range: 1466.68
+B destroyed Escort Ship ID: 4
+Time to Hit: 17.65 seconds
+E Attack Range: 26.21 - 90.35
+
+----------------------------------------
+Escort Ship ID: 5
+Distance: 1129.63
+B Firing Angle: 75.52 degrees
+B Attack Range: 710.75
+E Attack Range: 48.81 - 124.87
+
+
+==== ITERATION 1 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 1
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 17.65 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (1832.39, 1271.42)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: SURVIVED
+Attack Used: NO
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 2
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (1434.59, 283.21)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: ACTIVE
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 1
+Distance: 562.14
+B Firing Angle: 55.14 degrees
+B Attack Range: 1376.94
+B destroyed Escort Ship ID: 1
+Time to Hit: 20.07 seconds
+E Attack Range: 26.21 - 90.35
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 1548.62
+B Firing Angle: 26.64 degrees
+B Attack Range: 1176.70
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1467.84
+B Firing Angle: 57.38 degrees
+B Attack Range: 1332.95
+E Attack Range: 79.45 - 160.62
+
+----------------------------------------
+Escort Ship ID: 5
+Distance: 1024.69
+B Firing Angle: 47.19 degrees
+B Attack Range: 1463.62
+B destroyed Escort Ship ID: 5
+Time to Hit: 17.95 seconds
+E Attack Range: 48.81 - 124.87
+
+
+==== ITERATION 2 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 2
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 20.07 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (1434.59, 283.21)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 3
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (1213.94, 32.60)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 1831.18
+B Firing Angle: 44.42 degrees
+B Attack Range: 1467.59
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1599.05
+B Firing Angle: 87.55 degrees
+B Attack Range: 125.40
+E Attack Range: 79.45 - 160.62
+
+
+==== ITERATION 3 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 0
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 0.00 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (1213.94, 32.60)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 4
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (485.77, 274.46)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 1906.16
+B Firing Angle: 26.33 degrees
+B Attack Range: 1166.94
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1275.44
+B Firing Angle: 69.42 degrees
+B Attack Range: 966.03
+E Attack Range: 79.45 - 160.62
+
+
+==== ITERATION 4 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 0
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 0.00 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (485.77, 274.46)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 5
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (1608.35, 313.36)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 1509.98
+B Firing Angle: 47.41 degrees
+B Attack Range: 1462.71
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1541.31
+B Firing Angle: 69.29 degrees
+B Attack Range: 971.03
+E Attack Range: 79.45 - 160.62
+
+
+==== ITERATION 5 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 0
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 0.00 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (1608.35, 313.36)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+
+====================================================
+       PART 1-C - PART B SIMULATION 1 - ITERATION 6
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (801.89, 259.58)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Minimum Velocity: 10.00
+Maximum Velocity: 20.00
+Minimum Angle: 10.00 degrees
+Maximum Angle: 30.00 degrees
+Impact Power: 0.08
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Minimum Velocity: 30.00
+Maximum Velocity: 40.00
+Minimum Angle: 30.00 degrees
+Maximum Angle: 50.00 degrees
+Impact Power: 0.04
+Status: ACTIVE
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Minimum Velocity: 20.00
+Maximum Velocity: 30.00
+Minimum Angle: 20.00 degrees
+Maximum Angle: 40.00 degrees
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Minimum Velocity: 25.00
+Maximum Velocity: 35.00
+Minimum Angle: 25.00 degrees
+Maximum Angle: 45.00 degrees
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+----------------------------------------
+Escort Ship ID: 2
+Distance: 1754.20
+B Firing Angle: 36.02 degrees
+B Attack Range: 1396.37
+E Attack Range: 3.49 - 35.31
+
+----------------------------------------
+Escort Ship ID: 3
+Distance: 1283.63
+B Firing Angle: 80.24 degrees
+B Attack Range: 490.59
+E Attack Range: 79.45 - 160.62
+
+
+==== ITERATION 6 RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Escort Ships Hit This Iteration: 0
+Cumulative Impact: 0.00
+Cumulative Damage: 0.00%
+Battle Duration: 0.00 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (801.89, 259.58)
+Max Velocity: 120.00
+Cumulative Impact: 0.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_C
+Position: (1680.38, 788.77)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_A
+Position: (1596.88, 1823.29)
+Impact Power: 0.08
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_E
+Position: (670.45, 1536.46)
+Impact Power: 0.04
+Status: SURVIVED
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_C
+Position: (1107.94, 954.79)
+Impact Power: 0.07
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_D
+Position: (729.57, 1026.80)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO

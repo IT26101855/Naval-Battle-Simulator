@@ -692,5 +692,623 @@ void simulation_part_B_2()
     system("clear");
 }
 
+void part_1_C_A()
+{
+    system("clear");
 
+    printf("====================================================\n");
+    printf("        PART 1-C - PART 1-A WITH IMPACT POWER\n");
+    printf("====================================================\n\n");
 
+    struct Battleship b;
+
+    /* Battleship details */
+    printf("Enter Battleship Type (U M R S): ");
+    scanf(" %c", &b.type);
+
+    printf("Enter Battleship's X Position: ");
+    scanf("%f", &b.x);
+
+    printf("Enter Battleship's Y Position: ");
+    scanf("%f", &b.y);
+
+    printf("Enter Battleship's Max Velocity: ");
+    scanf("%f", &b.maxVelocity);
+
+    /* Battlefield details */
+    float D;
+    int N;
+
+    battlefield(&D, &N);
+
+    /* Create escort ships */
+    struct Escortship e[N];
+
+    char types[] = {'A', 'B', 'C', 'D', 'E'};
+
+    srand(time(NULL));
+
+    for (int i = 0; i < N; i++)
+    {
+        e[i].id = i + 1;
+
+        /* Random type */
+        e[i].type = types[rand() % 5];
+
+        /* Random position */
+        e[i].x = ((float)rand() / RAND_MAX) * D;
+        e[i].y = ((float)rand() / RAND_MAX) * D;
+
+        /* Type-specific values */
+        switch (e[i].type)
+        {
+            case 'A':
+                e[i].minAngle =
+                    ((float)rand() / RAND_MAX) * 70.0f;
+
+                e[i].maxAngle =
+                    e[i].minAngle + 20.0f;
+
+                e[i].minVelocity =
+                    ((float)rand() / RAND_MAX) * 10.0f;
+
+                e[i].maxVelocity =
+                    1.2f * b.maxVelocity;
+
+                e[i].impactPower = 0.08f;
+                break;
+
+            case 'B':
+                e[i].minAngle =
+                    ((float)rand() / RAND_MAX) * 60.0f;
+
+                e[i].maxAngle =
+                    e[i].minAngle + 30.0f;
+
+                e[i].minVelocity =
+                    ((float)rand() / RAND_MAX) * 10.0f;
+
+                e[i].maxVelocity =
+                    ((float)rand() / RAND_MAX) * b.maxVelocity;
+
+                e[i].impactPower = 0.06f;
+                break;
+
+            case 'C':
+                e[i].minAngle =
+                    ((float)rand() / RAND_MAX) * 65.0f;
+
+                e[i].maxAngle =
+                    e[i].minAngle + 25.0f;
+
+                e[i].minVelocity =
+                    ((float)rand() / RAND_MAX) * 10.0f;
+
+                e[i].maxVelocity =
+                    ((float)rand() / RAND_MAX) * b.maxVelocity;
+
+                e[i].impactPower = 0.07f;
+                break;
+
+            case 'D':
+                e[i].minAngle =
+                    ((float)rand() / RAND_MAX) * 40.0f;
+
+                e[i].maxAngle =
+                    e[i].minAngle + 50.0f;
+
+                e[i].minVelocity =
+                    ((float)rand() / RAND_MAX) * 10.0f;
+
+                e[i].maxVelocity =
+                    ((float)rand() / RAND_MAX) * b.maxVelocity;
+
+                e[i].impactPower = 0.05f;
+                break;
+
+            case 'E':
+                e[i].minAngle =
+                    ((float)rand() / RAND_MAX) * 20.0f;
+
+                e[i].maxAngle =
+                    e[i].minAngle + 70.0f;
+
+                e[i].minVelocity =
+                    ((float)rand() / RAND_MAX) * 10.0f;
+
+                e[i].maxVelocity =
+                    ((float)rand() / RAND_MAX) * b.maxVelocity;
+
+                e[i].impactPower = 0.04f;
+                break;
+        }
+
+        /* Initial states */
+        e[i].isDestroyed = 0;
+        e[i].hasAttacked = 0;
+    }
+
+    /* Display generated ships */
+    printf("\n----- Generated Escort Ships -----\n\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        printf("ID: %d | Type: E_%c | Position: (%.2f, %.2f) | "
+               "Max Vel: %.2f | Impact Power: %.2f\n",
+               e[i].id,
+               e[i].type,
+               e[i].x,
+               e[i].y,
+               e[i].maxVelocity,
+               e[i].impactPower);
+    }
+
+    printf("\nPart 1-C initial setup completed.\n");
+    printf("Impact power has been assigned to all escort ships.\n");
+
+    getchar();
+    getchar();
+
+    int bSunk = battle_calculations_C_A(b, e, N);
+
+    if (bSunk)
+       {
+         printf("\nBattleship was destroyed!\n");
+      }
+    else
+       {
+          printf("\nBattleship survived!\n");
+       }
+
+    system("clear");
+}
+
+void part_1_C_B1()
+{
+    system("clear");
+
+    printf("====================================================\n");
+    printf("        PART 1-C - PART 1 B SIMULATION 1\n");
+    printf("====================================================\n\n");
+
+    struct Battleship b;
+
+    /* Battleship */
+
+    printf("Enter Battleship Type: ");
+    scanf(" %c", &b.type);
+
+    printf("Enter Battleship Maximum Velocity: ");
+    scanf("%f", &b.maxVelocity);
+
+    /* Battlefield */
+
+    float D;
+    int N;
+
+    battlefield(&D, &N);
+
+    /* Escort ships */
+
+    struct Escortship e[N];
+
+    for (int i = 0; i < N; i++)
+    {
+        e[i].id = i + 1;
+
+        e[i].x =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].y =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].isDestroyed = 0;
+        e[i].hasAttacked = 0;
+
+        int typeNumber =
+            rand() % 5;
+
+        switch (typeNumber)
+        {
+            case 0:
+                e[i].type = 'A';
+                e[i].minVelocity = 10;
+                e[i].maxVelocity = 20;
+                e[i].minAngle = 10;
+                e[i].maxAngle = 30;
+                e[i].impactPower = 0.08f;
+                break;
+
+            case 1:
+                e[i].type = 'B';
+                e[i].minVelocity = 15;
+                e[i].maxVelocity = 25;
+                e[i].minAngle = 15;
+                e[i].maxAngle = 35;
+                e[i].impactPower = 0.06f;
+                break;
+
+            case 2:
+                e[i].type = 'C';
+                e[i].minVelocity = 20;
+                e[i].maxVelocity = 30;
+                e[i].minAngle = 20;
+                e[i].maxAngle = 40;
+                e[i].impactPower = 0.07f;
+                break;
+
+            case 3:
+                e[i].type = 'D';
+                e[i].minVelocity = 25;
+                e[i].maxVelocity = 35;
+                e[i].minAngle = 25;
+                e[i].maxAngle = 45;
+                e[i].impactPower = 0.05f;
+                break;
+
+            case 4:
+                e[i].type = 'E';
+                e[i].minVelocity = 30;
+                e[i].maxVelocity = 40;
+                e[i].minAngle = 30;
+                e[i].maxAngle = 50;
+                e[i].impactPower = 0.04f;
+                break;
+        }
+    }
+
+    /* k input */
+
+    int k;
+
+    do
+    {
+        printf("\nEnter number of path points k: ");
+        scanf("%d", &k);
+
+        if (k <= 0)
+        {
+            printf("k must be greater than 0!\n");
+        }
+
+    } while (k <= 0);
+
+    /* Generate path */
+
+    float pathX[k];
+    float pathY[k];
+
+    for (int i = 0; i < k; i++)
+    {
+        pathX[i] =
+            ((float)rand() / RAND_MAX) * D;
+
+        pathY[i] =
+            ((float)rand() / RAND_MAX) * D;
+    }
+
+    /*
+     * IMPORTANT:
+     * cumulative impact must survive
+     * between iterations.
+     */
+
+    float cumulativeImpact = 0.0f;
+
+    /* Run simulation */
+
+    for (int i = 0; i < k; i++)
+    {
+        b.x = pathX[i];
+        b.y = pathY[i];
+
+        printf("\n========================================\n");
+        printf("Iteration %d / %d\n", i + 1, k);
+
+        printf("B Position: (%.2f, %.2f)\n",
+               b.x,
+               b.y);
+
+        printf("Cumulative Impact: %.2f\n",
+               cumulativeImpact);
+
+        printf("Cumulative Damage: %.2f%%\n",
+               cumulativeImpact * 100.0f);
+
+        printf("========================================\n");
+
+        int bSunk =
+            battle_calculations_C_B1(
+                b,
+                e,
+                N,
+                i + 1,
+                &cumulativeImpact);
+
+        if (bSunk)
+        {
+            printf("\nBattleship was destroyed!\n");
+
+            printf("Simulation 1 stopped at iteration %d.\n",
+                   i + 1);
+
+            break;
+        }
+    }
+
+    printf("\n====================================================\n");
+    printf("       PART 1-C PART B SIMULATION 1 COMPLETED\n");
+    printf("====================================================\n");
+
+    printf("\nFinal Cumulative Impact: %.2f\n",
+           cumulativeImpact);
+
+    printf("Final Cumulative Damage: %.2f%%\n",
+           cumulativeImpact * 100.0f);
+
+    printf("\nResults saved to:\n");
+    printf("part_1_C_B_simulation_1.txt\n");
+
+    printf("\nPress Enter to return...");
+
+    while (getchar() != '\n');
+    getchar();
+
+    system("clear");
+}
+
+void part_1_C_B2()
+{
+    system("clear");
+
+    printf("====================================================\n");
+    printf("        PART 1-C - PART 1 B SIMULATION 2\n");
+    printf("====================================================\n\n");
+
+    struct Battleship b;
+
+    /* Battleship */
+
+    printf("Enter Battleship Type: ");
+    scanf(" %c", &b.type);
+
+    printf("Enter Battleship Maximum Velocity: ");
+    scanf("%f", &b.maxVelocity);
+
+    /* Battlefield */
+
+    float D;
+    int N;
+
+    battlefield(&D, &N);
+
+    /* Escort ships */
+
+    struct Escortship e[N];
+
+    for (int i = 0; i < N; i++)
+    {
+        e[i].id = i + 1;
+
+        e[i].x =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].y =
+            ((float)rand() / RAND_MAX) * D;
+
+        e[i].isDestroyed = 0;
+        e[i].hasAttacked = 0;
+
+        int typeNumber =
+            rand() % 5;
+
+        switch (typeNumber)
+        {
+            case 0:
+                e[i].type = 'A';
+                e[i].minVelocity = 10;
+                e[i].maxVelocity = 20;
+                e[i].minAngle = 10;
+                e[i].maxAngle = 30;
+                e[i].impactPower = 0.08f;
+                break;
+
+            case 1:
+                e[i].type = 'B';
+                e[i].minVelocity = 15;
+                e[i].maxVelocity = 25;
+                e[i].minAngle = 15;
+                e[i].maxAngle = 35;
+                e[i].impactPower = 0.06f;
+                break;
+
+            case 2:
+                e[i].type = 'C';
+                e[i].minVelocity = 20;
+                e[i].maxVelocity = 30;
+                e[i].minAngle = 20;
+                e[i].maxAngle = 40;
+                e[i].impactPower = 0.07f;
+                break;
+
+            case 3:
+                e[i].type = 'D';
+                e[i].minVelocity = 25;
+                e[i].maxVelocity = 35;
+                e[i].minAngle = 25;
+                e[i].maxAngle = 45;
+                e[i].impactPower = 0.05f;
+                break;
+
+            case 4:
+                e[i].type = 'E';
+                e[i].minVelocity = 30;
+                e[i].maxVelocity = 40;
+                e[i].minAngle = 30;
+                e[i].maxAngle = 50;
+                e[i].impactPower = 0.04f;
+                break;
+        }
+    }
+
+    //getting the value of k
+
+    int k;
+
+    do
+    {
+        printf("\nEnter number of path points k: ");
+        scanf("%d", &k);
+
+        if (k <= 0)
+        {
+            printf("k must be greater than 0!\n");
+        }
+
+    } while (k <= 0);
+
+    /* t */
+
+    int t;
+
+    do
+    {
+        printf("Enter t (number of normal-gun iterations, t < k): ");
+        scanf("%d", &t);
+
+        if (t <= 0 || t >= k)
+        {
+            printf("Invalid t! It must satisfy 0 < t < k.\n");
+        }
+
+    } while (t <= 0 || t >= k);
+
+    /* thetaMin */
+
+    float thetaMin;
+
+    do
+    {
+        printf("Enter thetaMin (0 < thetaMin < 30): ");
+        scanf("%f", &thetaMin);
+
+        if (thetaMin <= 0 || thetaMin >= 30)
+        {
+            printf("Invalid thetaMin! "
+                   "It must be between 0 and 30 degrees.\n");
+        }
+
+    } while (thetaMin <= 0 || thetaMin >= 30);
+
+    /* Generate path */
+
+    float pathX[k];
+    float pathY[k];
+
+    for (int i = 0; i < k; i++)
+    {
+        pathX[i] =
+            ((float)rand() / RAND_MAX) * D;
+
+        pathY[i] =
+            ((float)rand() / RAND_MAX) * D;
+    }
+
+    /*
+     * Cumulative impact is shared
+     * between all iterations.
+     */
+
+    float cumulativeImpact = 0.0f;
+
+    /* Run simulation */
+
+    for (int i = 0; i < k; i++)
+    {
+        b.x = pathX[i];
+        b.y = pathY[i];
+
+        int jammed;
+
+        if (i < t)
+        {
+            jammed = 0;
+        }
+        else
+        {
+            jammed = 1;
+        }
+
+        printf("\n========================================\n");
+
+        printf("Iteration %d / %d\n",
+               i + 1,
+               k);
+
+        printf("B Position: (%.2f, %.2f)\n",
+               b.x,
+               b.y);
+
+        if (jammed)
+        {
+            printf("B Gun Status: JAMMED\n");
+
+            printf("Allowed Angle: %.2f - 90 degrees\n",
+                   thetaMin);
+        }
+        else
+        {
+            printf("B Gun Status: NORMAL\n");
+
+            printf("Allowed Angle: 0 - 90 degrees\n");
+        }
+
+        printf("Cumulative Impact: %.2f\n",
+               cumulativeImpact);
+
+        printf("Cumulative Damage: %.2f%%\n",
+               cumulativeImpact * 100.0f);
+
+        printf("========================================\n");
+
+        int bSunk =
+            battle_calculations_C_B2(
+                b,
+                e,
+                N,
+                i + 1,
+                jammed,
+                thetaMin,
+                &cumulativeImpact);
+
+        if (bSunk)
+        {
+            printf("\nBattleship was destroyed!\n");
+
+            printf("Simulation 2 stopped at iteration %d.\n",
+                   i + 1);
+
+            break;
+        }
+    }
+
+    printf("\n====================================================\n");
+    printf("       PART 1-C PART B SIMULATION 2 COMPLETED\n");
+    printf("====================================================\n");
+
+    printf("\nFinal Cumulative Impact: %.2f\n",
+           cumulativeImpact);
+
+    printf("Final Cumulative Damage: %.2f%%\n",
+           cumulativeImpact * 100.0f);
+
+    printf("\nResults saved to:\n");
+    printf("part_1_C_B_simulation_2.txt\n");
+
+    printf("\nPress Enter to return...");
+
+    while (getchar() != '\n');
+    getchar();
+
+    system("clear");
+}

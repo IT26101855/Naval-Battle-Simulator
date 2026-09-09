@@ -1,0 +1,169 @@
+
+
+====================================================
+             PART 1-C - SIMULATION A
+====================================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: R
+Position: (300.00, 500.00)
+Max Velocity: 120.00
+
+Total Escort Ships (N): 6
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_A
+Position: (242.24, 96.11)
+Minimum Velocity: 2.81
+Maximum Velocity: 144.00
+Minimum Angle: 10.75 degrees
+Maximum Angle: 30.75 degrees
+Impact Power: 0.08
+Attack Used: NO
+
+Escort Ship ID: 2
+Type: E_B
+Position: (87.78, 531.83)
+Minimum Velocity: 4.78
+Maximum Velocity: 13.69
+Minimum Angle: 15.97 degrees
+Maximum Angle: 45.97 degrees
+Impact Power: 0.06
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_B
+Position: (667.32, 477.79)
+Minimum Velocity: 3.76
+Maximum Velocity: 101.19
+Minimum Angle: 28.38 degrees
+Maximum Angle: 58.38 degrees
+Impact Power: 0.06
+Attack Used: NO
+
+Escort Ship ID: 4
+Type: E_D
+Position: (723.94, 646.90)
+Minimum Velocity: 7.52
+Maximum Velocity: 35.99
+Minimum Angle: 24.41 degrees
+Maximum Angle: 74.41 degrees
+Impact Power: 0.05
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_E
+Position: (240.50, 109.77)
+Minimum Velocity: 3.32
+Maximum Velocity: 45.61
+Minimum Angle: 9.45 degrees
+Maximum Angle: 79.45 degrees
+Impact Power: 0.04
+Attack Used: NO
+
+Escort Ship ID: 6
+Type: E_B
+Position: (860.80, 336.94)
+Minimum Velocity: 9.57
+Maximum Velocity: 58.87
+Minimum Angle: 38.25 degrees
+Maximum Angle: 68.25 degrees
+Impact Power: 0.06
+Attack Used: NO
+
+Escort Ship ID: 1 attacked B
+Type: E_A
+Impact Power: 0.08
+Cumulative Impact: 0.08
+Cumulative Damage: 8.00%
+
+B destroyed Escort Ship ID: 1
+Time to Hit: 17.30 seconds
+
+B destroyed Escort Ship ID: 2
+Time to Hit: 17.30 seconds
+
+Escort Ship ID: 3 attacked B
+Type: E_B
+Impact Power: 0.06
+Cumulative Impact: 0.14
+Cumulative Damage: 14.00%
+
+B destroyed Escort Ship ID: 3
+Time to Hit: 17.30 seconds
+
+B destroyed Escort Ship ID: 4
+Time to Hit: 17.30 seconds
+
+B destroyed Escort Ship ID: 5
+Time to Hit: 17.30 seconds
+
+B destroyed Escort Ship ID: 6
+Time to Hit: 17.30 seconds
+
+
+==== SIMULATION RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Total Escort Ships Hit: 6
+Cumulative Impact: 0.14
+Cumulative Damage: 14.00%
+Battle Duration: 17.30 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: R
+Position: (300.00, 500.00)
+Max Velocity: 120.00
+Cumulative Impact: 0.14
+Cumulative Damage: 14.00%
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_A
+Position: (242.24, 96.11)
+Impact Power: 0.08
+Status: DESTROYED
+Attack Used: YES
+
+Escort Ship ID: 2
+Type: E_B
+Position: (87.78, 531.83)
+Impact Power: 0.06
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 3
+Type: E_B
+Position: (667.32, 477.79)
+Impact Power: 0.06
+Status: DESTROYED
+Attack Used: YES
+
+Escort Ship ID: 4
+Type: E_D
+Position: (723.94, 646.90)
+Impact Power: 0.05
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 5
+Type: E_E
+Position: (240.50, 109.77)
+Impact Power: 0.04
+Status: DESTROYED
+Attack Used: NO
+
+Escort Ship ID: 6
+Type: E_B
+Position: (860.80, 336.94)
+Impact Power: 0.06
+Status: DESTROYED
+Attack Used: NO
