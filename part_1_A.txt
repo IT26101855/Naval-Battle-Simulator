@@ -1,0 +1,98 @@
+
+
+                             ========================================
+                                             SIMULATION 1
+                             ========================================
+
+=== INITIAL BATTLEFIELD CONDITIONS ===
+
+Battleship:
+Type: U
+Position: (300.00, 400.00)
+Max Velocity: 80.00
+
+Total Escort Ships (N): 5
+
+----- ESCORT SHIP DETAILS -----
+
+Escort Ship ID: 1
+Type: E_D
+Position: (42.83, 1271.52)
+Minimum Velocity: 0.77
+Maximum Velocity: 71.07
+Minimum Angle: 25.78 degrees
+Maximum Angle: 75.78 degrees
+
+Escort Ship ID: 2
+Type: E_C
+Position: (235.17, 767.10)
+Minimum Velocity: 0.27
+Maximum Velocity: 61.66
+Minimum Angle: 41.36 degrees
+Maximum Angle: 66.36 degrees
+
+Escort Ship ID: 3
+Type: E_C
+Position: (1099.93, 593.55)
+Minimum Velocity: 9.33
+Maximum Velocity: 4.77
+Minimum Angle: 47.11 degrees
+Maximum Angle: 72.11 degrees
+
+Escort Ship ID: 4
+Type: E_D
+Position: (612.40, 726.46)
+Minimum Velocity: 6.63
+Maximum Velocity: 9.57
+Minimum Angle: 13.85 degrees
+Maximum Angle: 63.85 degrees
+
+Escort Ship ID: 5
+Type: E_E
+Position: (609.06, 1202.15)
+Minimum Velocity: 3.55
+Maximum Velocity: 18.92
+Minimum Angle: 14.03 degrees
+Maximum Angle: 84.03 degrees
+
+
+==== SIMULATION RESULTS ====
+
+STATUS: Battleship SURVIVED!
+Total Escort Ships Hit: 2
+Battle Duration: 11.53 seconds
+
+
+==== FINAL BATTLEFIELD CONDITIONS ====
+
+Battleship:
+Type: U
+Position: (300.00, 400.00)
+Max Velocity: 80.00
+
+Escort Ships:
+
+Escort Ship ID: 1
+Type: E_D
+Position: (42.83, 1271.52)
+Status: SURVIVED
+
+Escort Ship ID: 2
+Type: E_C
+Position: (235.17, 767.10)
+Status: DESTROYED
+
+Escort Ship ID: 3
+Type: E_C
+Position: (1099.93, 593.55)
+Status: SURVIVED
+
+Escort Ship ID: 4
+Type: E_D
+Position: (612.40, 726.46)
+Status: DESTROYED
+
+Escort Ship ID: 5
+Type: E_E
+Position: (609.06, 1202.15)
+Status: SURVIVED
